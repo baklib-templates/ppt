@@ -1,0 +1,22 @@
+{
+  "name": "aippt",
+  "version": "0.0.1",
+  "description": "AI PPT 幻灯片 - 通过网页制作多端适配的PPT幻灯片效果，支持HTML代码制作幻灯片动画",
+  "scripts": {
+    "build": "npm-run-all build:fonts build:css build:js",
+    "build:fonts": "mkdir -p assets/webfonts && cp -r node_modules/@fortawesome/fontawesome-free/webfonts/* assets/webfonts/",
+    "build:css": "npx tailwindcss -i ./src/stylesheets/application.css -o ./assets/css/main.css",
+    "build:js": "esbuild ./src/javascripts/application.js --bundle --minify --outfile=./assets/javascripts/main.js",
+    "dev": "npm-run-all build:fonts --parallel 'build:css -- --watch' 'build:js -- --watch'"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "alpinejs": "3.13.3",
+    "swiper": "11.0.6"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.3",
+    "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.4.0"
+  }
+}

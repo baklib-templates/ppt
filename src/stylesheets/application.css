@@ -1,0 +1,83 @@
+@import 'swiper/swiper-bundle.css';
+@import '@fortawesome/fontawesome-free/css/all.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Body Background */
+body {
+  background-color: #f0fdfa;
+}
+
+/* Hide scrollbar for clean slide look */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Swiper Fixes - macOS Liquid Glass Style */
+.swiper {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  box-sizing: border-box;
+  overflow: visible;
+}
+.swiper-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.swiper-slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* macOS Liquid Glass Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* macOS Style Card Shadow */
+.macos-shadow {
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Slide Content Styles */
+.slide-content {
+  min-height: 400px;
+}
+
+.slide-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.slide-content h1,
+.slide-content h2,
+.slide-content h3 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.slide-content p {
+  margin-bottom: 1em;
+  line-height: 1.8;
+}

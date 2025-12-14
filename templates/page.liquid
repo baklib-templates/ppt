@@ -1,0 +1,33 @@
+{% comment %} 详情页：展示单张幻灯片内容（用于预览或单独访问） {% endcomment %}
+
+{{ page.settings.html_content }}
+
+
+{% schema %}
+  {
+    "name": "幻灯片详情页",
+    "description": "幻灯片详情页模板 - 展示单张幻灯片内容",
+    "thumb_url": "images/theme/thumb.png",
+    "preview_image_urls": [
+      "images/theme/page.webp"
+    ],
+    "sub_page_templates": ["page"],
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "标题",
+        "info": "幻灯片标题",
+        "placeholder": "请输入幻灯片标题"
+      },
+      {
+        "id": "html_content",
+        "type": "html",
+        "label": "HTML内容",
+        "info": "幻灯片HTML内容，支持HTML代码和动画效果",
+        "rows": 20,
+        "placeholder": "请输入HTML内容..."
+      }
+    ]
+  }
+{% endschema %}

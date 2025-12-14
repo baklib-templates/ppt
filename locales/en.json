@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "header": {
+      "title": "Site Title"
+    },
+    "footer": {
+      "copyright": "All rights reserved"
+    }
+  }
+}

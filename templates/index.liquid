@@ -1,0 +1,85 @@
+{% comment %} 首页：列表展示所有栏目 {% endcomment %}
+{% assign channels = page.children_in_list | order_by: 'created_at' %}
+{% assign channel_size = channels | size %}
+
+<main id="content" class="min-h-screen bg-gray-50">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+    <div class="container mx-auto px-4 xl:max-w-6xl">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">{{ site.name }}</h1>
+        <p class="text-xl md:text-2xl mb-8 text-gray-100">{{ site.settings.slogan | default: '通过网页制作多端适配的PPT幻灯片效果，支持HTML代码制作幻灯片动画' }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Channels Grid -->
+  <section class="py-16">
+    <div class="container mx-auto px-4 xl:max-w-6xl">
+      {% if channel_size > 0 %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {% for channel in channels %}
+            <div class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow overflow-hidden">
+              <a href="{{ channel.path }}" class="block">
+                {% if channel.settings.thumb_image_url %}
+                  <div class="relative h-48 overflow-hidden bg-gray-200">
+                    <img
+                      src="{{ channel.settings.thumb_image_url }}"
+                      alt="{{ channel.title }}"
+                      class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                  </div>
+                {% else %}
+                  <div class="relative h-48 overflow-hidden bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                    <div class="text-white text-6xl font-bold opacity-50">{{ channel.settings.title | slice: 0, 1 }}</div>
+                  </div>
+                {% endif %}
+
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold text-gray-800 mb-2 hover:text-blue-600 transition-colors">
+                    {{ channel.settings.title }}
+                  </h3>
+                  {% if channel.settings.description %}
+                    <p class="text-gray-600 text-sm line-clamp-2">
+                      {{ channel.settings.description | strip_html | truncate: 100 }}
+                    </p>
+                  {% endif %}
+
+                  {% assign page_count = channel.children_in_list | size %}
+                  <div class="mt-4 flex items-center text-sm text-gray-500">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span>{{ page_count }} 张幻灯片</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="text-center py-16">
+          <div class="inline-block p-8 bg-white rounded-lg shadow-md">
+            <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">暂无栏目</h3>
+            <p class="text-gray-600">请先创建栏目页面</p>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+</main>
+
+{% schema %}
+  {
+    "name": "首页",
+    "description": "首页模板 - 列表展示所有栏目",
+    "thumb_url": "images/theme/thumb.png",
+    "preview_image_urls": [
+      "images/theme/index.webp"
+    ],
+    "sub_page_templates": ["channel"],
+    "settings": []
+  }
+{% endschema %}

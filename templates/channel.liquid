@@ -1,0 +1,288 @@
+{% comment %} 栏目页：完整的 PPT 幻灯片展示框架 {% endcomment %}
+{% assign slides = page.children_in_list | order_by: 'created_at' %}
+{% assign slides_count = slides | size %}
+{% assign total_slides = slides_count | plus: 1 %}
+
+<main
+    x-data="presentation({{ total_slides }})"
+    x-init="initApp()"
+    class="h-screen w-screen overflow-hidden flex flex-col items-center justify-center relative text-slate-800 bg-primary-100"
+  >
+    <!-- Floating Navigation Menu -->
+    <div
+      class="fixed top-6 left-8 z-50 group"
+      @mouseenter="menuOpen = true"
+      @mouseleave="menuOpen = false"
+    >
+      <div
+        class="flex items-center gap-2 bg-white/80 backdrop-blur-xl shadow-lg border border-white/20 px-4 py-2 rounded-full cursor-pointer hover:shadow-xl hover:bg-white/90 transition-all text-slate-700 hover:text-primary"
+      >
+        <i class="fas fa-th-large w-5 h-5"></i>
+        <span class="font-bold text-sm">目录</span>
+      </div>
+
+      <div
+        x-show="menuOpen"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 translate-y-2"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 translate-y-2"
+        class="absolute top-full left-0 pt-4 w-[400px]"
+        style="display: none"
+      >
+        <div
+          class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 p-4 max-h-[70vh] overflow-y-auto no-scrollbar"
+        >
+          <div class="grid grid-cols-2 gap-2">
+            {% if slides_count > 0 %}
+              {% for slide in slides %}
+                <button
+                  @click="goToSlide({{ forloop.index0 }})"
+                  class="text-left px-3 py-2 rounded-lg text-xs font-medium transition-colors flex items-center gap-2 w-full"
+                  :class="currentIndex === {{ forloop.index0 }} ? 'bg-primary text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'"
+                >
+                  <span
+                    class="w-5 h-5 flex items-center justify-center rounded-full text-[10px] shrink-0"
+                    :class="currentIndex === {{ forloop.index0 }} ? 'bg-white/20' : 'bg-slate-200 text-slate-500'"
+                  >{{ forloop.index }}</span>
+
+                  <span class="truncate">{{ slide.settings.title | default: slide.title | default: '未命名幻灯片' }}</span>
+                </button>
+              {% endfor %}
+            {% endif %}
+            {% comment %} 结语幻灯片 {% endcomment %}
+            <button
+              @click="goToSlide({{ slides_count }})"
+              class="text-left px-3 py-2 rounded-lg text-xs font-medium transition-colors flex items-center gap-2 w-full"
+              :class="currentIndex === {{ slides_count }} ? 'bg-primary text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'"
+            >
+              <span
+                class="w-5 h-5 flex items-center justify-center rounded-full text-[10px] shrink-0"
+                :class="currentIndex === {{ slides_count }} ? 'bg-white/20' : 'bg-slate-200 text-slate-500'"
+              >{{ total_slides }}</span>
+
+              <span class="truncate">结语</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Swiper Container -->
+    <div class="w-full h-full relative z-10 p-4 pb-20">
+      <div class="swiper mySwiper w-full h-full">
+        <div class="swiper-wrapper">
+          {% for slide in slides %}
+            <div class="swiper-slide">
+              <div class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-hidden relative flex flex-col">
+
+                <div class="flex-1 flex flex-col justify-center items-center text-center overflow-auto">
+                  {{ slide.settings.html_content }}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+          <!-- 结语幻灯片 -->
+          <div class="swiper-slide">
+            <div
+              class="w-full h-full bg-secondary backdrop-blur-xl text-white p-12 shadow-2xl rounded-3xl border border-white/10 overflow-hidden relative flex flex-col items-center justify-center text-center"
+            >
+
+              <div class="flex flex-col items-center justify-center gap-2">
+                <img src="{{ 'images/theme/icon.png' | asset_url }}" alt="Baklib" class="h-24">
+                <img src="{{ 'images/theme/logo-white.svg' | asset_url }}" alt="Baklib" class="h-32">
+              </div>
+
+              <p class="text-2xl text-teal-100 mb-12">
+                企业知识资产与数字体验基础设施
+              </p>
+
+              <div class="flex gap-6">
+                <a href="https://www.baklib.com/about/contact" target="_blank"
+                  class="px-8 py-4 bg-white text-primary font-bold rounded-full shadow-xl hover:bg-teal-50 transition-colors flex items-center gap-2"
+                >
+                  预约演示
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+
+                <a href="https://baklib.com/" target="_blank"
+                  class="px-8 py-4 border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-colors"
+                >
+                  注册体验
+                </a>
+              </div>
+
+              <div class="mt-16 text-teal-200 text-sm">
+                www.baklib.com
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="fixed bottom-0 left-0 w-full z-50">
+      <div class="w-full h-2 bg-slate-200">
+        <div
+          class="h-full bg-primary transition-all duration-300 ease-out"
+          :style="`width: ${progress}%`"
+        ></div>
+      </div>
+
+      <div
+        class="bg-white/80 backdrop-blur-xl border-t border-white/20 p-3 flex items-center justify-between shadow-lg"
+      >
+        <div class="flex items-center gap-4 ml-4">
+          <span
+            class="text-slate-500 font-mono text-sm"
+            x-text="`${(currentIndex + 1).toString().padStart(2, '0')} / {{ total_slides }}`"
+          ></span>
+
+          <span class="hidden md:inline text-xs text-slate-400 font-medium">
+            {{ page.link_text }}
+          </span>
+        </div>
+
+        <div class="flex items-center gap-2 mr-4">
+          <button
+            @click="swiper.slidePrev()"
+            :disabled="currentIndex === 0"
+            class="p-2 rounded-full hover:bg-primary disabled:opacity-30"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 w-6 h-6">
+              <path fill-rule="evenodd" d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z" clip-rule="evenodd" />
+            </svg>
+          </button>
+
+          <button
+            @click="swiper.slideNext()"
+            :disabled="currentIndex >= {{ total_slides | minus: 1 }}"
+            class="p-2 rounded-full hover:bg-primary disabled:opacity-30"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 w-6 h-6">
+              <path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("alpine:init", () => {
+        Alpine.data("presentation", (totalSlides) => ({
+          currentIndex: 0,
+          menuOpen: false,
+          swiper: null,
+          totalSlides: totalSlides || {{ total_slides }},
+          logoSvg: `<svg viewBox="0 0 100 100" class="w-16 h-16 drop-shadow-md">
+                    <defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#0d9488" /><stop offset="100%" stopColor="#ea580c" /></linearGradient></defs>
+                    <rect x="0" y="0" width="100" height="100" rx="22" fill="url(#logoGradient)" />
+                    <path d="M35 70V30h14c8 0 13 4 13 10 0 4-2 7-6 8.5 5 1.5 8 5 8 10 0 7-6 11.5-15 11.5H35zm8-22h6c3.5 0 6-1.5 6-5s-2.5-5-6-5h-6v10zm0 15h7c4 0 7-2 7-6s-3-6-7-6h-7v12z" fill="white" />
+                    <circle cx="82" cy="70" r="6" fill="#ea580c" stroke="white" strokeWidth="2" />
+                </svg>`,
+          get progress() {
+            const total = this.totalSlides || {{ total_slides }};
+            const current = this.currentIndex || 0;
+            if (!total || total === 0) {
+              return 0;
+            }
+            const percentage = ((current + 1) / total) * 100;
+            const result = Math.min(Math.max(percentage, 0), 100);
+            // 调试：确保返回数字
+            return isNaN(result) ? 0 : result;
+          },
+          initApp() {
+            this.swiper = new Swiper(".mySwiper", {
+              effect: "slide", // 使用 slide 效果以显示间距
+              slidesPerView: 1,
+              allowTouchMove: false, // Prevent accidental swipes, use controls
+              speed: 600, // 切换速度
+              keyboard: {
+                enabled: true,
+                onlyInViewport: true,
+              },
+              on: {
+                slideChange: (s) => {
+                  this.currentIndex = s.activeIndex;
+                  // 强制更新进度条（确保响应式更新）
+                  this.$nextTick(() => {
+                    // 触发响应式更新
+                  });
+                },
+              },
+            });
+
+            // 添加键盘事件监听（左右方向键控制翻页）
+            const handleKeyDown = (e) => {
+              if (!this.swiper) return;
+
+              // 左方向键或上方向键：上一张
+              if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                this.swiper.slidePrev();
+              }
+              // 右方向键或下方向键：下一张
+              else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                this.swiper.slideNext();
+              }
+              // Home 键：第一张
+              else if (e.key === 'Home') {
+                e.preventDefault();
+                this.swiper.slideTo(0);
+              }
+              // End 键：最后一张
+              else if (e.key === 'End') {
+                e.preventDefault();
+                this.swiper.slideTo(this.totalSlides - 1);
+              }
+            };
+
+            document.addEventListener('keydown', handleKeyDown);
+          },
+          goToSlide(index) {
+            this.swiper.slideTo(index);
+            this.menuOpen = false;
+          },
+        }));
+      });
+    </script>
+</main>
+
+{% schema %}
+  {
+    "name": "栏目页 - PPT 幻灯片版本",
+    "description": "完整的 PPT 幻灯片展示页面，包含导航和控制，适合在手机端展示",
+    "thumb_url": "images/theme/thumb.png",
+    "preview_image_urls": [
+      "images/theme/channel.ppt.webp"
+    ],
+    "sub_page_templates": ["page"],
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "标题",
+        "info": "栏目标题"
+      },
+      {
+        "id": "description",
+        "type": "textarea",
+        "label": "描述",
+        "info": "栏目描述"
+      },
+      {
+        "id": "thumb_image_url",
+        "type": "image_picker",
+        "ratio": "16:9",
+        "width": 400,
+        "label": "封面图",
+        "info": "栏目封面图片"
+      }
+    ]
+  }
+{% endschema %}

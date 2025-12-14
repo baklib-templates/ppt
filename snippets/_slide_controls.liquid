@@ -1,0 +1,44 @@
+{% comment %} 幻灯片控制栏 - 底部进度条和控制按钮 {% endcomment %}
+<div class="fixed bottom-0 left-0 w-full z-50">
+  <!-- Progress Bar -->
+  <div class="w-full h-2 bg-slate-200">
+    <div
+      class="h-full bg-primary transition-all duration-300 ease-out"
+      :style="`width: ${progress}%`"
+    ></div>
+  </div>
+
+  <!-- Controls -->
+  <div
+    class="bg-white border-t border-slate-200 p-3 flex items-center justify-between"
+  >
+    <div class="flex items-center gap-4 ml-4">
+      <span
+        class="text-slate-500 font-mono text-sm"
+        x-text="`${(currentIndex + 1).toString().padStart(2, '0')} / {{ slides.size }}`"
+      ></span>
+
+      <span class="hidden md:inline text-xs text-slate-400 font-medium">
+        {{ page.title }}
+      </span>
+    </div>
+
+    <div class="flex items-center gap-2 mr-4">
+      <button
+        @click="swiper.slidePrev()"
+        :disabled="currentIndex === 0"
+        class="p-2 rounded-full hover:bg-slate-100 disabled:opacity-30"
+      >
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <button
+        @click="swiper.slideNext()"
+        :disabled="currentIndex >= (document.querySelectorAll('.swiper-slide').length - 1)"
+        class="p-2 rounded-full hover:bg-slate-100 disabled:opacity-30"
+      >
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</div>
