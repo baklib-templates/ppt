@@ -76,9 +76,9 @@
         <div class="swiper-wrapper">
           {% for slide in slides %}
             <div class="swiper-slide">
-              <div class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-hidden relative flex flex-col">
+              <div class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col">
 
-                <div class="flex-1 flex flex-col justify-center items-center text-center overflow-auto">
+                <div class="flex-1 flex flex-col justify-center items-center text-center">
                   {{ slide.settings.html_content }}
                 </div>
               </div>
