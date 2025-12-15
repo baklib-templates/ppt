@@ -1,5 +1,5 @@
 {% comment %} 栏目页：完整的 PPT 幻灯片展示框架 {% endcomment %}
-{% assign slides = page.children_in_list | order_by: 'created_at' %}
+{% assign slides = page.children_in_list %}
 {% assign slides_count = slides | size %}
 {% assign total_slides = slides_count | plus: 1 %}
 

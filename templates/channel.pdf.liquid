@@ -1,5 +1,5 @@
 {% comment %} PDF 版本栏目页：从上到下显示所有子页面内容，适合打印为 PDF {% endcomment %}
-{% assign slides = page.children_in_list | order_by: 'created_at' %}
+{% assign slides = page.children_in_list %}
 {% assign slides_count = slides | size %}
 
 
