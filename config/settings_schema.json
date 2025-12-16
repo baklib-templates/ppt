@@ -14,7 +14,9 @@
     "theme_preview_images": [
       "images/theme/index.webp",
       "images/theme/channel.ppt.webp",
-      "images/theme/channel.pdf.webp"
+      "images/theme/channel.pdf.webp",
+      "images/theme/components.webp",
+      "images/theme/component.webp"
     ],
     "theme_languages": [
       {
