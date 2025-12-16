@@ -157,9 +157,9 @@
         <div x-show="activeTab === 'code'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
           {% if page.settings.html_content %}
             <!-- 隐藏的 textarea 用于复制 -->
-            <textarea id="html-content-source" style="position: absolute; left: -9999px; opacity: 0;" readonly>{{ page.settings.html_content }}</textarea>
+            <textarea id="html-content-source" style="position: absolute; left: -9999px; opacity: 0;" readonly>{{ page.settings.html_content | escape}}</textarea>
             <div class="bg-slate-900 overflow-auto p-4 md:p-8 max-h-[600px]">
-              <pre class="text-slate-100 text-sm font-mono leading-relaxed whitespace-pre-wrap"><code>{{ page.settings.html_content | escape }}</code></pre>
+          <pre class="text-slate-100 text-sm font-mono leading-relaxed whitespace-pre-wrap"><code>{{ page.settings.html_content | escape }}</code></pre>
             </div>
           {% else %}
             <div class="text-center py-12 text-slate-400">
@@ -181,7 +181,9 @@
                 placeholder="请输入提示词内容..."
               >
 参考示例：{{ page.url }}
-生成一段HTML代码，用于制作PPT幻灯片，代码中包含动画效果，代码通过 TailwindCSS 实现。
+生成一段TailwindCSS 样式的 HTML代码，用于制作 Web PPT的一页幻灯片存放在 swiper-slide 里面，遇到图片则在Unsplash（https://unsplash.com/）找一张替代，不需要添加页面边距和宽高控制。
+页面里要填充的内容如下：
+
 {{ page.settings.prompt }}
               </textarea>
               <div id="chat-list" class="mt-0">
