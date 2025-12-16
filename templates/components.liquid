@@ -1,0 +1,117 @@
+{% comment %} 组件库展示页：网格布局展示所有组件 {% endcomment %}
+{% assign pages = page.children_in_list %}
+
+<main class="min-h-screen bg-primary-100 py-12 px-4 md:px-8">
+  <div class="max-w-7xl mx-auto">
+    <!-- 页面标题和描述 -->
+    <div class="mb-12 text-center">
+      <h1 class="text-4xl md:text-5xl font-black text-slate-800 mb-4">
+        {{ page.settings.title | default: 'Tailwind CSS UI Components' }}
+      </h1>
+      {% if page.settings.description %}
+        <p class="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          {{ page.settings.description }}
+        </p>
+      {% else %}
+        <p class="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto">
+          A collection of beautiful, ready-to-use Tailwind CSS UI components. These components are highly customizable and perfect for building modern web applications.
+        </p>
+      {% endif %}
+    </div>
+
+    <!-- 组件网格 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {% for component in pages %}
+        <a href="{{ component.url }}" class="group">
+          <div class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/20 overflow-hidden hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 h-full flex flex-col">
+            <!-- 封面图占位符 -->
+            <div class="relative h-48 bg-slate-50 overflow-hidden">
+              {% if component.settings.thumb_image_url %}
+                <img
+                  src="{{ component.settings.thumb_image_url }}"
+                  alt="{{ component.settings.title | default: component.link_text }}"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                >
+              {% else %}
+                <!-- 占位符：模拟组件预览效果 -->
+                <div class="w-full h-full flex items-center justify-center p-4">
+                  <div class="w-full h-full bg-white rounded-lg shadow-sm border border-slate-200/50 flex flex-col items-center justify-center space-y-2">
+                    <!-- 模拟组件预览 -->
+                    <div class="w-3/4 h-2 bg-slate-200 rounded"></div>
+                    <div class="w-1/2 h-2 bg-slate-200 rounded"></div>
+                    <div class="w-2/3 h-2 bg-slate-200 rounded"></div>
+                    <div class="mt-2 w-16 h-8 bg-primary/20 rounded border border-primary/30"></div>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+
+            <!-- 组件信息 -->
+            <div class="p-6 flex-1 flex flex-col">
+              <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-primary transition-colors">
+                {{ component.settings.title | default: component.link_text }}
+              </h3>
+
+              {% if component.settings.description %}
+                <p class="text-slate-600 text-sm leading-relaxed line-clamp-3 flex-1">
+                  {{ component.settings.description | strip_html | truncate: 120 }}
+                </p>
+              {% else %}
+                <p class="text-slate-500 text-sm italic">
+                  暂无描述
+                </p>
+              {% endif %}
+
+              <!-- 底部提示 -->
+              <div class="mt-4 pt-4 border-t border-slate-200 flex items-center text-xs text-slate-400">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mr-2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <span>查看详情</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+
+  </div>
+</main>
+
+{% schema %}
+  {
+    "name": "Slide Components",
+    "description": "PPT 幻灯片组件库",
+    "thumb_url": "images/theme/thumb.png",
+    "preview_image_urls": [
+      "images/theme/components.webp"
+    ],
+    "sub_page_templates": ["component"],
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "标题",
+        "info": "栏目标题",
+        "default": "Tailwind CSS UI Components"
+      },
+      {
+        "id": "description",
+        "type": "textarea",
+        "label": "描述",
+        "info": "栏目描述",
+        "rows": 3,
+        "default": "A collection of beautiful, ready-to-use Tailwind CSS UI components. These components are highly customizable and perfect for building modern web applications."
+      },
+      {
+        "id": "thumb_image_url",
+        "type": "image_picker",
+        "ratio": "16:9",
+        "width": 400,
+        "label": "封面图",
+        "info": "栏目封面图片"
+      }
+    ]
+  }
+{% endschema %}

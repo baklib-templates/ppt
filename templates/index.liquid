@@ -4,11 +4,11 @@
 
 <main id="content" class="min-h-screen bg-gray-50">
   <!-- Hero Section -->
-  <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+  <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-8 md:py-12">
     <div class="container mx-auto px-4 xl:max-w-6xl">
       <div class="text-center">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">{{ site.name }}</h1>
-        <p class="text-xl md:text-2xl mb-8 text-gray-100">{{ site.settings.slogan | default: '通过网页制作多端适配的PPT幻灯片效果，支持HTML代码制作幻灯片动画' }}</p>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">{{ site.name }}</h1>
+        <p class="text-xl md:text-2xl text-gray-100">{{ site.settings.slogan | default: '通过网页制作多端适配的PPT幻灯片效果，支持HTML代码制作幻灯片动画' }}</p>
       </div>
     </div>
   </section>
@@ -79,7 +79,7 @@
     "preview_image_urls": [
       "images/theme/index.webp"
     ],
-    "sub_page_templates": ["channel"],
+    "sub_page_templates": ["channel", "components"],
     "settings": []
   }
 {% endschema %}

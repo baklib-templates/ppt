@@ -1,0 +1,608 @@
+{% comment %} AIPPT 模板操作指南 {% endcomment %}
+
+<div class="min-h-screen bg-primary-100">
+  <!-- 左侧目录导航 - 固定悬停 -->
+  <aside class="fixed left-0 top-0 h-screen w-64 bg-white/60 backdrop-blur-xl border-r border-white/20 flex flex-col z-40">
+    <!-- 标题区域 - 固定 -->
+    <div class="flex items-center gap-2 bg-primary/80 backdrop-blur-xl border-b border-white/20 px-6 py-4 flex-shrink-0">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w-6 h-6 text-white">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+      </svg>
+      <h2 class="text-xl font-bold text-white">操作指南</h2>
+    </div>
+
+    <!-- 导航区域 - 可滚动 -->
+    <nav class="flex-1 overflow-y-auto p-4">
+      <ul class="space-y-1">
+        <li>
+          <a href="#overview" class="flex items-center gap-2 px-4 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 hover:text-primary transition-colors text-sm">
+            <span class="flex-1">1. 模板概述</span>
+          </a>
+        </li>
+        <li>
+          <a href="#create-channel" class="flex items-center gap-2 px-4 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 hover:text-primary transition-colors text-sm">
+            <span class="flex-1">2. 创建 PPT 幻灯片栏目</span>
+          </a>
+        </li>
+        <li>
+          <a href="#create-slides" class="flex items-center gap-2 px-4 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 hover:text-primary transition-colors text-sm">
+            <span class="flex-1">3. 创建幻灯片</span>
+          </a>
+        </li>
+        <li>
+          <a href="#edit-content" class="flex items-center gap-2 px-4 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 hover:text-primary transition-colors text-sm">
+            <span class="flex-1">4. 编辑幻灯片内容</span>
+          </a>
+        </li>
+        <li>
+          <a href="#component-library" class="flex items-center gap-2 px-4 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 hover:text-primary transition-colors text-sm">
+            <span class="flex-1">5. 使用组件库</span>
+          </a>
+        </li>
+        <li>
+          <a href="#controls" class="flex items-center gap-2 px-4 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 hover:text-primary transition-colors text-sm">
+            <span class="flex-1">6. 操作控制</span>
+          </a>
+        </li>
+        <li>
+          <a href="#tips" class="flex items-center gap-2 px-4 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 hover:text-primary transition-colors text-sm">
+            <span class="flex-1">7. 使用技巧</span>
+          </a>
+        </li>
+        <li>
+          <a href="#faq" class="flex items-center gap-2 px-4 py-2.5 rounded-lg text-slate-700 hover:bg-slate-100 hover:text-primary transition-colors text-sm">
+            <span class="flex-1">8. 常见问题</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- 右侧主内容区域 -->
+  <main class="ml-64 py-12 px-4 md:px-8">
+    <div class="max-w-4xl mx-auto">
+      <!-- 页面标题 -->
+      <div class="mb-12 text-center">
+        <h1 class="text-4xl md:text-5xl font-black text-slate-800 mb-4">
+          AIPPT 模板操作指南
+        </h1>
+        <p class="text-lg text-slate-600 leading-relaxed">
+          通过本指南快速了解如何使用 AIPPT 模板创建精美的 PPT 幻灯片和组件库
+        </p>
+      </div>
+
+      <!-- 内容区域 -->
+      <div class="space-y-8">
+      <!-- 1. 模板概述 -->
+      <section id="overview" class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/20 p-6 md:p-8">
+        <h2 class="text-3xl font-bold text-slate-800 mb-4">1. 模板概述</h2>
+        <div class="prose prose-slate max-w-none">
+          <p class="text-lg text-slate-600 mb-4">
+            AIPPT 模板是一个强大的 PPT 幻灯片制作工具，支持通过网页创建多端适配的幻灯片效果，并内置了组件库管理功能。
+          </p>
+
+          <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">主要功能</h3>
+          <ul class="space-y-2 text-slate-600">
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary mt-0.5 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><strong>PPT 幻灯片展示</strong>：使用 Swiper.js 实现流畅的幻灯片切换效果</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary mt-0.5 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><strong>HTML 动画支持</strong>：支持完整的 HTML/CSS/JavaScript 代码，可制作丰富的动画效果</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary mt-0.5 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><strong>组件库管理</strong>：内置组件库功能，方便管理和复用 UI 组件</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary mt-0.5 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><strong>多端适配</strong>：响应式设计，支持 PC、平板、手机等多种设备</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary mt-0.5 flex-shrink-0">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span><strong>键盘控制</strong>：支持方向键、Home、End 键快速切换幻灯片</span>
+            </li>
+          </ul>
+
+          <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">页面类型</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <h4 class="font-bold text-slate-800 mb-2">首页 (index)</h4>
+              <p class="text-sm text-slate-600">展示所有栏目列表，每个栏目对应一个 PPT 幻灯片集合</p>
+            </div>
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <h4 class="font-bold text-slate-800 mb-2">栏目页 (channel)</h4>
+              <p class="text-sm text-slate-600">完整的 PPT 幻灯片展示框架，包含导航菜单和控制按钮</p>
+            </div>
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <h4 class="font-bold text-slate-800 mb-2">组件库 (components)</h4>
+              <p class="text-sm text-slate-600">网格布局展示所有组件，支持预览、代码和提示词查看</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. 创建 PPT 幻灯片栏目 -->
+      <section id="create-channel" class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/20 p-6 md:p-8">
+        <h2 class="text-3xl font-bold text-slate-800 mb-4">2. 创建 PPT 幻灯片栏目</h2>
+        <div class="prose prose-slate max-w-none">
+          <p class="text-lg text-slate-600 mb-4">
+            栏目是 PPT 幻灯片的容器，每个栏目可以包含多张幻灯片。
+          </p>
+
+          <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">操作步骤</h3>
+          <ol class="space-y-3 text-slate-600">
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">1</span>
+              <div>
+                <p class="font-semibold text-slate-800">在首页创建子页面</p>
+                <p class="text-sm mt-1">进入后台管理，在首页下创建新的子页面</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">2</span>
+              <div>
+                <p class="font-semibold text-slate-800">选择模板类型</p>
+                <p class="text-sm mt-1">在页面设置中选择模板为 <code class="bg-slate-100 px-2 py-1 rounded">channel</code></p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">3</span>
+              <div>
+                <p class="font-semibold text-slate-800">填写栏目信息</p>
+                <p class="text-sm mt-1">在页面设置中填写栏目标题、描述和封面图（可选）</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">4</span>
+              <div>
+                <p class="font-semibold text-slate-800">保存并发布</p>
+                <p class="text-sm mt-1">保存页面后，栏目会出现在首页的栏目列表中</p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="mt-6 p-4 bg-primary-50 rounded-lg border border-primary-200">
+            <p class="text-sm text-slate-700">
+              <strong>💡 提示</strong>：栏目封面图建议使用 16:9 的比例，尺寸为 400px 宽度，这样在首页展示时效果最佳。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 创建幻灯片 -->
+      <section id="create-slides" class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/20 p-6 md:p-8">
+        <h2 class="text-3xl font-bold text-slate-800 mb-4">3. 创建幻灯片</h2>
+        <div class="prose prose-slate max-w-none">
+          <p class="text-lg text-slate-600 mb-4">
+            在栏目下创建子页面，每个子页面代表一张幻灯片。
+          </p>
+
+          <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">操作步骤</h3>
+          <ol class="space-y-3 text-slate-600">
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">1</span>
+              <div>
+                <p class="font-semibold text-slate-800">在栏目下创建子页面</p>
+                <p class="text-sm mt-1">进入栏目页面，在后台管理中添加子页面</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">2</span>
+              <div>
+                <p class="font-semibold text-slate-800">选择模板类型</p>
+                <p class="text-sm mt-1">选择模板为 <code class="bg-slate-100 px-2 py-1 rounded">page</code>（默认模板）</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">3</span>
+              <div>
+                <p class="font-semibold text-slate-800">填写幻灯片信息</p>
+                <p class="text-sm mt-1">填写幻灯片标题（用于导航菜单显示）</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">4</span>
+              <div>
+                <p class="font-semibold text-slate-800">编辑 HTML 内容</p>
+                <p class="text-sm mt-1">在"HTML内容"字段中编写幻灯片的 HTML 代码</p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <p class="text-sm text-slate-700">
+              <strong>📝 注意</strong>：幻灯片的显示顺序按照创建时间排序。如果需要调整顺序，可以在后台管理中调整页面的排序。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. 编辑幻灯片内容 -->
+      <section id="edit-content" class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/20 p-6 md:p-8">
+        <h2 class="text-3xl font-bold text-slate-800 mb-4">4. 编辑幻灯片内容</h2>
+        <div class="prose prose-slate max-w-none">
+          <p class="text-lg text-slate-600 mb-4">
+            幻灯片内容使用 HTML 代码编写，支持 TailwindCSS 类名、Font Awesome 图标和自定义 CSS/JavaScript。
+          </p>
+
+          <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">可用资源</h3>
+          <div class="space-y-4">
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <h4 class="font-bold text-slate-800 mb-2">TailwindCSS 类名</h4>
+              <p class="text-sm text-slate-600 mb-2">可以使用所有 TailwindCSS 工具类，例如：</p>
+              <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;div class="bg-primary text-white p-6 rounded-lg"&gt;
+  内容区域
+&lt;/div&gt;</code></pre>
+            </div>
+
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <h4 class="font-bold text-slate-800 mb-2">Font Awesome 图标</h4>
+              <p class="text-sm text-slate-600 mb-2">使用 Font Awesome 图标，格式：</p>
+              <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg text-sm overflow-x-auto"><code>&lt;i class="fas fa-icon-name w-6 h-6"&gt;&lt;/i&gt;</code></pre>
+              <p class="text-xs text-slate-500 mt-2">常用图标：fa-check-circle, fa-star, fa-heart, fa-user, fa-home 等</p>
+            </div>
+
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <h4 class="font-bold text-slate-800 mb-2">颜色系统</h4>
+              <p class="text-sm text-slate-600 mb-2">模板定义了以下颜色（支持完整色阶 50-950）：</p>
+              <ul class="text-sm text-slate-600 space-y-1">
+                <li><code class="bg-slate-100 px-2 py-1 rounded">primary</code> - 主色调（青色）</li>
+                <li><code class="bg-slate-100 px-2 py-1 rounded">secondary</code> - 次色调（橙色）</li>
+                <li><code class="bg-slate-100 px-2 py-1 rounded">accent</code> - 强调色（靛蓝色）</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">内容示例</h3>
+          <div class="bg-slate-900 rounded-lg p-6 overflow-x-auto">
+            <pre class="text-slate-100 text-sm font-mono leading-relaxed"><code>&lt;!-- 简单文本幻灯片 --&gt;
+&lt;div class="text-center"&gt;
+  &lt;h2 class="text-4xl font-black text-slate-800 mb-8"&gt;
+    标题内容
+  &lt;/h2&gt;
+  &lt;p class="text-2xl text-slate-600"&gt;
+    描述内容
+  &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- 带图标的卡片 --&gt;
+&lt;div class="bg-white p-8 rounded-2xl shadow-lg"&gt;
+  &lt;i class="fas fa-check-circle w-12 h-12 text-primary mb-4"&gt;&lt;/i&gt;
+  &lt;h3 class="text-2xl font-bold"&gt;功能标题&lt;/h3&gt;
+  &lt;p class="text-slate-600"&gt;功能描述&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- 网格布局 --&gt;
+&lt;div class="grid grid-cols-3 gap-6"&gt;
+  &lt;div class="bg-primary-100 p-6 rounded-lg"&gt;卡片 1&lt;/div&gt;
+  &lt;div class="bg-primary-100 p-6 rounded-lg"&gt;卡片 2&lt;/div&gt;
+  &lt;div class="bg-primary-100 p-6 rounded-lg"&gt;卡片 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+
+          <div class="mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+            <p class="text-sm text-slate-700">
+              <strong>⚠️ 重要提示</strong>：HTML 内容会直接渲染，请确保代码安全。建议使用 TailwindCSS 类名进行样式设计，避免内联样式和外部资源引用。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. 使用组件库 -->
+      <section id="component-library" class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/20 p-6 md:p-8">
+        <h2 class="text-3xl font-bold text-slate-800 mb-4">5. 使用组件库</h2>
+        <div class="prose prose-slate max-w-none">
+          <p class="text-lg text-slate-600 mb-4">
+            组件库功能允许你创建、管理和复用 UI 组件，每个组件包含预览、代码和提示词信息。
+          </p>
+
+          <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">创建组件库页面</h3>
+          <ol class="space-y-3 text-slate-600">
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">1</span>
+              <div>
+                <p class="font-semibold text-slate-800">在首页创建子页面</p>
+                <p class="text-sm mt-1">选择模板类型为 <code class="bg-slate-100 px-2 py-1 rounded">components</code></p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">2</span>
+              <div>
+                <p class="font-semibold text-slate-800">填写组件库信息</p>
+                <p class="text-sm mt-1">填写标题和描述，设置封面图（可选）</p>
+              </div>
+            </li>
+          </ol>
+
+          <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">创建组件</h3>
+          <ol class="space-y-3 text-slate-600">
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">1</span>
+              <div>
+                <p class="font-semibold text-slate-800">在组件库下创建子页面</p>
+                <p class="text-sm mt-1">选择模板类型为 <code class="bg-slate-100 px-2 py-1 rounded">component</code></p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">2</span>
+              <div>
+                <p class="font-semibold text-slate-800">填写组件信息</p>
+                <p class="text-sm mt-1">填写组件标题、描述、提示词和 HTML 内容</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">3</span>
+              <div>
+                <p class="font-semibold text-slate-800">查看组件详情</p>
+                <p class="text-sm mt-1">点击组件卡片进入详情页，可以查看预览、代码和提示词</p>
+              </div>
+            </li>
+          </ol>
+
+          <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">组件详情页功能</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                预览
+              </h4>
+              <p class="text-sm text-slate-600">查看组件的实际渲染效果</p>
+            </div>
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-primary">
+                  <path fill-rule="evenodd" d="M14.447 3.027a.75.75 0 0 1 .527.92l-4.5 16.5a.75.75 0 0 1-1.448-.394l4.5-16.5a.75.75 0 0 1 .921-.526ZM16.72 6.22a.75.75 0 0 1 1.06 0l5.25 5.25a.75.75 0 0 1 0 1.06l-5.25 5.25a.75.75 0 1 1-1.06-1.06L21.44 12l-4.72-4.72a.75.75 0 0 1 0-1.06Zm-9.44 0a.75.75 0 0 1 0 1.06L2.56 12l4.72 4.72a.75.75 0 0 1-1.06 1.06L.97 12.53a.75.75 0 0 1 0-1.06l5.25-5.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+                </svg>
+                代码
+              </h4>
+              <p class="text-sm text-slate-600">查看和复制组件的 HTML 代码</p>
+            </div>
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-primary">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+                </svg>
+                提示词
+              </h4>
+              <p class="text-sm text-slate-600">查看和编辑组件的提示词内容</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. 操作控制 -->
+      <section id="controls" class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/20 p-6 md:p-8">
+        <h2 class="text-3xl font-bold text-slate-800 mb-4">6. 操作控制</h2>
+        <div class="prose prose-slate max-w-none">
+          <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">幻灯片控制</h3>
+          <div class="space-y-4">
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                </svg>
+                目录菜单
+              </h4>
+              <p class="text-sm text-slate-600">点击左上角"目录"按钮打开导航菜单，可以快速跳转到任意幻灯片</p>
+            </div>
+
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                控制按钮
+              </h4>
+              <p class="text-sm text-slate-600">使用底部控制栏的"上一张"和"下一张"按钮切换幻灯片</p>
+            </div>
+
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="9" y1="3" x2="9" y2="21"></line>
+                </svg>
+                键盘控制
+              </h4>
+              <ul class="text-sm text-slate-600 space-y-1 mt-2">
+                <li>• <kbd class="bg-slate-200 px-2 py-1 rounded text-xs">←</kbd> 或 <kbd class="bg-slate-200 px-2 py-1 rounded text-xs">↑</kbd>：上一张</li>
+                <li>• <kbd class="bg-slate-200 px-2 py-1 rounded text-xs">→</kbd> 或 <kbd class="bg-slate-200 px-2 py-1 rounded text-xs">↓</kbd>：下一张</li>
+                <li>• <kbd class="bg-slate-200 px-2 py-1 rounded text-xs">Home</kbd>：第一张</li>
+                <li>• <kbd class="bg-slate-200 px-2 py-1 rounded text-xs">End</kbd>：最后一张</li>
+              </ul>
+            </div>
+
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary">
+                  <line x1="12" y1="2" x2="12" y2="22"></line>
+                  <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+                进度条
+              </h4>
+              <p class="text-sm text-slate-600">底部进度条显示当前播放进度，页码显示格式为"当前页 / 总页数"</p>
+            </div>
+          </div>
+
+          <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">组件库控制</h3>
+          <div class="space-y-4">
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                复制代码
+              </h4>
+              <p class="text-sm text-slate-600">在组件详情页点击"复制代码"按钮，可以快速复制组件的 HTML 代码到剪贴板</p>
+            </div>
+
+            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
+              <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                </svg>
+                左侧导航
+              </h4>
+              <p class="text-sm text-slate-600">在组件详情页，左侧固定显示所有组件列表，方便快速切换查看不同组件</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. 使用技巧 -->
+      <section id="tips" class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/20 p-6 md:p-8">
+        <h2 class="text-3xl font-bold text-slate-800 mb-4">7. 使用技巧</h2>
+        <div class="prose prose-slate max-w-none">
+          <div class="space-y-4">
+            <div class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-lg p-6 border border-primary-200">
+              <h3 class="text-xl font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-primary">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                  <path d="M2 17l10 5 10-5"></path>
+                  <path d="M2 12l10 5 10-5"></path>
+                </svg>
+                技巧 1：合理组织幻灯片结构
+              </h3>
+              <p class="text-slate-700">
+                建议按照逻辑顺序创建幻灯片，例如：封面 → 目录 → 内容 → 结语。清晰的标题有助于在导航菜单中快速定位。
+              </p>
+            </div>
+
+            <div class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-lg p-6 border border-primary-200">
+              <h3 class="text-xl font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-primary">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                  <path d="M2 17l10 5 10-5"></path>
+                  <path d="M2 12l10 5 10-5"></path>
+                </svg>
+                技巧 2：使用组件库复用代码
+              </h3>
+              <p class="text-slate-700">
+                将常用的 UI 组件保存到组件库中，通过"复制代码"功能快速复用。提示词功能可以帮助记录组件的使用场景和参数说明。
+              </p>
+            </div>
+
+            <div class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-lg p-6 border border-primary-200">
+              <h3 class="text-xl font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-primary">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                  <path d="M2 17l10 5 10-5"></path>
+                  <path d="M2 12l10 5 10-5"></path>
+                </svg>
+                技巧 3：优化移动端体验
+              </h3>
+              <p class="text-slate-700">
+                使用 TailwindCSS 的响应式类名（如 <code class="bg-slate-100 px-1 py-0.5 rounded text-xs">md:</code>、<code class="bg-slate-100 px-1 py-0.5 rounded text-xs">lg:</code>）适配不同屏幕尺寸，确保在手机和平板上也有良好的显示效果。
+              </p>
+            </div>
+
+            <div class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-lg p-6 border border-primary-200">
+              <h3 class="text-xl font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-primary">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                  <path d="M2 17l10 5 10-5"></path>
+                  <path d="M2 12l10 5 10-5"></path>
+                </svg>
+                技巧 4：利用颜色系统
+              </h3>
+              <p class="text-slate-700">
+                使用模板定义的颜色系统（primary、secondary、accent）保持视觉一致性。例如：<code class="bg-slate-100 px-1 py-0.5 rounded text-xs">bg-primary</code>、<code class="bg-slate-100 px-1 py-0.5 rounded text-xs">text-secondary</code>、<code class="bg-slate-100 px-1 py-0.5 rounded text-xs">border-accent</code>。
+              </p>
+            </div>
+
+            <div class="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-lg p-6 border border-primary-200">
+              <h3 class="text-xl font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-primary">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                  <path d="M2 17l10 5 10-5"></path>
+                  <path d="M2 12l10 5 10-5"></path>
+                </svg>
+                技巧 5：PDF 导出功能
+              </h3>
+              <p class="text-slate-700">
+                访问 <code class="bg-slate-100 px-1 py-0.5 rounded text-xs">栏目URL?template=channel.pdf</code> 可以查看 PDF 版本，所有幻灯片会从上到下垂直排列，适合打印。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. 常见问题 -->
+      <section id="faq" class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/20 p-6 md:p-8">
+        <h2 class="text-3xl font-bold text-slate-800 mb-4">8. 常见问题</h2>
+        <div class="prose prose-slate max-w-none">
+          <div class="space-y-6">
+            <div class="border-l-4 border-primary pl-4">
+              <h3 class="text-lg font-semibold text-slate-800 mb-2">Q: 如何调整幻灯片的显示顺序？</h3>
+              <p class="text-slate-600">
+                A: 在后台管理中调整页面的排序，或者按照创建时间顺序创建幻灯片。幻灯片会按照创建时间自动排序。
+              </p>
+            </div>
+
+            <div class="border-l-4 border-primary pl-4">
+              <h3 class="text-lg font-semibold text-slate-800 mb-2">Q: 可以在幻灯片中使用 JavaScript 吗？</h3>
+              <p class="text-slate-600">
+                A: 可以，HTML 内容字段支持完整的 HTML/CSS/JavaScript 代码。但请注意代码安全性，避免使用可能影响页面性能的复杂脚本。
+              </p>
+            </div>
+
+            <div class="border-l-4 border-primary pl-4">
+              <h3 class="text-lg font-semibold text-slate-800 mb-2">Q: 如何添加图片到幻灯片？</h3>
+              <p class="text-slate-600">
+                A: 可以通过 Baklib 的数字资产管理（DAM）功能上传图片，然后在 HTML 内容中使用图片 URL。也可以使用外部图片链接。
+              </p>
+            </div>
+
+            <div class="border-l-4 border-primary pl-4">
+              <h3 class="text-lg font-semibold text-slate-800 mb-2">Q: 组件库中的组件可以导出吗？</h3>
+              <p class="text-slate-600">
+                A: 可以，在组件详情页点击"复制代码"按钮，即可将组件的 HTML 代码复制到剪贴板，然后粘贴到任何地方使用。
+              </p>
+            </div>
+
+            <div class="border-l-4 border-primary pl-4">
+              <h3 class="text-lg font-semibold text-slate-800 mb-2">Q: 幻灯片支持全屏模式吗？</h3>
+              <p class="text-slate-600">
+                A: 是的，栏目页（channel）模板会自动隐藏 header 和 footer，实现全屏幻灯片效果。使用键盘方向键可以快速切换幻灯片。
+              </p>
+            </div>
+
+            <div class="border-l-4 border-primary pl-4">
+              <h3 class="text-lg font-semibold text-slate-800 mb-2">Q: 如何自定义主题颜色？</h3>
+              <p class="text-slate-600">
+                A: 主题颜色在 <code class="bg-slate-100 px-1 py-0.5 rounded text-xs">tailwind.config.js</code> 中定义。可以修改 primary、secondary、accent 等颜色的值，然后重新构建 CSS。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 返回顶部按钮 -->
+      <div class="text-center mt-8">
+        <a href="#overview" class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-600 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+            <path d="M18 15l-6-6-6 6"></path>
+          </svg>
+          <span>返回顶部</span>
+        </a>
+      </div>
+      </div>
+    </div>
+  </main>
+</div>

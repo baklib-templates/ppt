@@ -1,93 +1,8 @@
-<!DOCTYPE html>
-
-<html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Baklib - AI 内容中台</title>
-
-    <!-- Libraries -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"
-    ></script>
-
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Tailwind Config & Custom Styles -->
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              baklib: {
-                primary: "#0d9488", // teal-600
-                secondary: "#ea580c", // orange-600
-                accent: "#4f46e5", // indigo-600
-                dark: "#0f172a",
-              },
-            },
-            fontFamily: {
-              sans: ['"Noto Sans SC"', "sans-serif"],
-            },
-          },
-        },
-      };
-    </script>
-
-    <style>
-      body {
-        background-color: #f0fdfa;
-      }
-      /* Hide scrollbar for clean slide look */
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-
-      /* Swiper Fixes */
-      .swiper {
-        width: 100%;
-        height: 100%;
-        padding: 20px;
-        box-sizing: border-box;
-      }
-      .swiper-slide {
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      /* Glassmorphism */
-      .glass {
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(10px);
-      }
-    </style>
-
-    <link rel="stylesheet" href="/index.css" />
-  </head>
 
   <body
     x-data="presentation()"
     x-init="initApp()"
-    class="h-screen w-screen overflow-hidden flex flex-col items-center justify-center relative text-slate-800"
+    class="h-screen w-screen overflow-hidden flex flex-col items-center justify-center relative text-slate-800 bg-primary-100"
   >
     <!-- Floating Navigation Menu -->
     <div
@@ -96,9 +11,9 @@
       @mouseleave="menuOpen = false"
     >
       <div
-        class="flex items-center gap-2 bg-white/90 backdrop-blur-sm shadow-md border border-slate-200 px-4 py-2 rounded-full cursor-pointer hover:shadow-lg transition-all text-slate-700 hover:text-baklib-primary"
+        class="flex items-center gap-2 bg-white/80 backdrop-blur-xl shadow-lg border border-white/20 px-4 py-2 rounded-full cursor-pointer hover:shadow-xl hover:bg-white/90 transition-all text-slate-700 hover:text-primary"
       >
-        <i data-lucide="layout-grid" class="w-5 h-5"></i>
+        <i class="fas fa-th-large w-5 h-5"></i>
         <span class="font-bold text-sm">目录</span>
       </div>
 
@@ -114,48 +29,46 @@
         style="display: none"
       >
         <div
-          class="bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-slate-100 p-4 max-h-[70vh] overflow-y-auto no-scrollbar"
+          class="bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 p-4 max-h-[70vh] overflow-y-auto no-scrollbar"
         >
           <div class="grid grid-cols-2 gap-2">
-            <template x-for="(slide, index) in slides" :key="index">
+            {% assign slide_titles = "What: 一句话介绍,Why: 企业 3 个痛点,Who: 目标客户群体,4 大应用场景,12 大产品组合,800 家客户案例,核心竞争优势,竞品对比分析,平台架构设计,平台使用流程,部署实施：SaaS/私有,私有化环境要求,数字体验成熟度,企业 ROI 投资回报,AI 远景规划,结语" | split: "," %}
+            {% for title in slide_titles %}
               <button
-                @click="goToSlide(index)"
+                @click="goToSlide({{ forloop.index0 }})"
                 class="text-left px-3 py-2 rounded-lg text-xs font-medium transition-colors flex items-center gap-2 w-full"
-                :class="currentIndex === index ? 'bg-baklib-primary text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'"
+                :class="currentIndex === {{ forloop.index0 }} ? 'bg-primary text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'"
               >
                 <span
                   class="w-5 h-5 flex items-center justify-center rounded-full text-[10px] shrink-0"
-                  :class="currentIndex === index ? 'bg-white/20' : 'bg-slate-200 text-slate-500'"
-                  x-text="index + 1"
-                ></span>
+                  :class="currentIndex === {{ forloop.index0 }} ? 'bg-white/20' : 'bg-slate-200 text-slate-500'"
+                >{{ forloop.index }}</span>
 
-                <span class="truncate" x-text="slide"></span>
+                <span class="truncate">{{ title }}</span>
               </button>
-            </template>
+            {% endfor %}
           </div>
         </div>
       </div>
     </div>
 
     <!-- Main Swiper Container -->
-    <div class="w-full max-w-7xl h-[85vh] md:h-[80vh] px-4 relative z-10">
-      <div class="swiper mySwiper rounded-3xl !p-0 !overflow-visible">
+    <div class="w-full h-full relative z-10 p-4 pb-20">
+      <div class="swiper mySwiper w-full h-full">
         <div class="swiper-wrapper">
           <!-- Slide 1: What -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-gradient-to-br from-white to-teal-50 p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col"
+              class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col"
             >
-              <!-- Logo -->
-              <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
 
               <div
                 class="flex-1 flex flex-col justify-center items-center text-center mt-8"
               >
                 <div
-                  class="bg-baklib-primary text-white p-6 rounded-full mb-8 shadow-lg shadow-teal-200"
+                  class="bg-primary text-white p-6 rounded-full mb-8 shadow-lg shadow-teal-200"
                 >
-                  <i data-lucide="box" class="w-16 h-16"></i>
+                  <i class="fas fa-box w-16 h-16"></i>
                 </div>
 
                 <h2
@@ -163,9 +76,9 @@
                 >
                   一个平台，融合
                   <br />
-                  <span class="text-baklib-primary">内容</span>、
-                  <span class="text-baklib-secondary">知识</span> 与
-                  <span class="text-baklib-accent">体验</span>
+                  <span class="text-primary">内容</span>、
+                  <span class="text-secondary">知识</span> 与
+                  <span class="text-accent">体验</span>
                 </h2>
 
                 <p
@@ -184,11 +97,11 @@
           <!-- Slide 2: Why -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-white p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col"
+              class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col"
             >
               <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
 
-              <header class="mb-8 border-l-8 border-baklib-primary pl-6 pr-20">
+              <header class="mb-8 border-l-8 border-primary pl-6 pr-20">
                 <h1 class="text-4xl font-black text-slate-800 mb-2">
                   为什么选择 Baklib？
                 </h1>
@@ -203,10 +116,10 @@
               >
                 <!-- Card 1 -->
                 <div
-                  class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-baklib-secondary h-80 flex flex-col"
+                  class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-secondary h-80 flex flex-col"
                 >
-                  <div class="text-baklib-secondary mb-6">
-                    <i data-lucide="database" class="w-12 h-12"></i>
+                  <div class="text-secondary mb-6">
+                    <i class="fas fa-database w-12 h-12"></i>
                   </div>
 
                   <h3 class="text-2xl font-bold text-slate-800 mb-4">
@@ -221,10 +134,10 @@
 
                 <!-- Card 2 -->
                 <div
-                  class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-baklib-secondary h-80 flex flex-col"
+                  class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-secondary h-80 flex flex-col"
                 >
-                  <div class="text-baklib-secondary mb-6">
-                    <i data-lucide="activity" class="w-12 h-12"></i>
+                  <div class="text-secondary mb-6">
+                    <i class="fas fa-chart-line w-12 h-12"></i>
                   </div>
 
                   <h3 class="text-2xl font-bold text-slate-800 mb-4">
@@ -238,10 +151,10 @@
 
                 <!-- Card 3 -->
                 <div
-                  class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-baklib-secondary h-80 flex flex-col"
+                  class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-secondary h-80 flex flex-col"
                 >
-                  <div class="text-baklib-secondary mb-6">
-                    <i data-lucide="layout" class="w-12 h-12"></i>
+                  <div class="text-secondary mb-6">
+                    <i class="fas fa-th-large w-12 h-12"></i>
                   </div>
 
                   <h3 class="text-2xl font-bold text-slate-800 mb-4">
@@ -259,11 +172,11 @@
           <!-- Slide 3: Who -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-white p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col"
+              class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col"
             >
               <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
 
-              <header class="mb-8 border-l-8 border-baklib-primary pl-6 pr-20">
+              <header class="mb-8 border-l-8 border-primary pl-6 pr-20">
                 <h1 class="text-4xl font-black text-slate-800 mb-2">
                   面向谁？
                 </h1>
@@ -286,11 +199,11 @@
                     class="absolute inset-0 flex flex-col justify-center items-center p-8 text-center"
                   >
                     <i
-                      data-lucide="users"
-                      class="w-16 h-16 text-baklib-primary mb-4"
+                      class="fas fa-users"
+                      class="w-16 h-16 text-primary mb-4"
                     ></i>
 
-                    <h3 class="text-3xl font-bold text-baklib-primary mb-2">
+                    <h3 class="text-3xl font-bold text-primary mb-2">
                       内部团队
                     </h3>
 
@@ -312,11 +225,11 @@
                     class="absolute inset-0 flex flex-col justify-center items-center p-8 text-center"
                   >
                     <i
-                      data-lucide="globe"
-                      class="w-16 h-16 text-baklib-secondary mb-4"
+                      class="fas fa-globe"
+                      class="w-16 h-16 text-secondary mb-4"
                     ></i>
 
-                    <h3 class="text-3xl font-bold text-baklib-secondary mb-2">
+                    <h3 class="text-3xl font-bold text-secondary mb-2">
                       外部受众
                     </h3>
 
@@ -340,11 +253,11 @@
           <!-- Slide 4: Scenarios -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-white p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col"
+              class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col"
             >
               <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
 
-              <header class="mb-8 border-l-8 border-baklib-primary pl-6 pr-20">
+              <header class="mb-8 border-l-8 border-primary pl-6 pr-20">
                 <h1 class="text-4xl font-black text-slate-800 mb-2">
                   4 大应用场景
                 </h1>
@@ -396,11 +309,11 @@
           <!-- Slide 5: Products -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-white p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col"
+              class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col"
             >
               <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
 
-              <header class="mb-8 border-l-8 border-baklib-primary pl-6 pr-20">
+              <header class="mb-8 border-l-8 border-primary pl-6 pr-20">
                 <h1 class="text-4xl font-black text-slate-800 mb-2">
                   12 大产品组合
                 </h1>
@@ -414,7 +327,7 @@
                 <!-- Group 1 -->
                 <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
                   <h3
-                    class="text-baklib-primary font-bold text-lg mb-4 border-b pb-2 border-slate-200"
+                    class="text-primary font-bold text-lg mb-4 border-b pb-2 border-slate-200"
                   >
                     知识库管理
                   </h3>
@@ -430,7 +343,7 @@
                 <!-- Group 2 -->
                 <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
                   <h3
-                    class="text-baklib-primary font-bold text-lg mb-4 border-b pb-2 border-slate-200"
+                    class="text-primary font-bold text-lg mb-4 border-b pb-2 border-slate-200"
                   >
                     品牌门户
                   </h3>
@@ -446,7 +359,7 @@
                 <!-- Group 3 -->
                 <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
                   <h3
-                    class="text-baklib-primary font-bold text-lg mb-4 border-b pb-2 border-slate-200"
+                    class="text-primary font-bold text-lg mb-4 border-b pb-2 border-slate-200"
                   >
                     服务与社区
                   </h3>
@@ -462,7 +375,7 @@
                 <!-- Group 4 -->
                 <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
                   <h3
-                    class="text-baklib-primary font-bold text-lg mb-4 border-b pb-2 border-slate-200"
+                    class="text-primary font-bold text-lg mb-4 border-b pb-2 border-slate-200"
                   >
                     数字出版
                   </h3>
@@ -477,9 +390,9 @@
               </div>
 
               <div
-                class="mt-8 p-4 bg-baklib-primary/10 rounded-lg border border-baklib-primary text-center"
+                class="mt-8 p-4 bg-primary/10 rounded-lg border border-primary text-center"
               >
-                <p class="text-baklib-primary font-bold">
+                <p class="text-primary font-bold">
                   AI 驱动：全模块支持智能搜索、自动摘要、对话问答及智能标签。
                 </p>
               </div>
@@ -489,11 +402,11 @@
           <!-- Slide 6: Customers -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-white p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col"
+              class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col"
             >
               <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
 
-              <header class="mb-8 border-l-8 border-baklib-primary pl-6 pr-20">
+              <header class="mb-8 border-l-8 border-primary pl-6 pr-20">
                 <h1 class="text-4xl font-black text-slate-800 mb-2">
                   800+ 标杆客户信赖
                 </h1>
@@ -584,11 +497,11 @@
           <!-- Slide 7: Advantages -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-white p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col"
+              class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col"
             >
               <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
 
-              <header class="mb-8 border-l-8 border-baklib-primary pl-6 pr-20">
+              <header class="mb-8 border-l-8 border-primary pl-6 pr-20">
                 <h1 class="text-4xl font-black text-slate-800 mb-2">
                   核心竞争优势
                 </h1>
@@ -602,8 +515,8 @@
                 <div
                   class="flex gap-4 p-4 border rounded-xl bg-white shadow-sm hover:shadow-md"
                 >
-                  <div class="text-baklib-primary shrink-0">
-                    <i data-lucide="check-circle" class="w-8 h-8"></i>
+                  <div class="text-primary shrink-0">
+                    <i class="fas fa-check-circle w-8 h-8"></i>
                   </div>
 
                   <div>
@@ -618,8 +531,8 @@
                 <div
                   class="flex gap-4 p-4 border rounded-xl bg-white shadow-sm hover:shadow-md"
                 >
-                  <div class="text-baklib-primary shrink-0">
-                    <i data-lucide="check-circle" class="w-8 h-8"></i>
+                  <div class="text-primary shrink-0">
+                    <i class="fas fa-check-circle w-8 h-8"></i>
                   </div>
 
                   <div>
@@ -634,8 +547,8 @@
                 <div
                   class="flex gap-4 p-4 border rounded-xl bg-white shadow-sm hover:shadow-md"
                 >
-                  <div class="text-baklib-primary shrink-0">
-                    <i data-lucide="check-circle" class="w-8 h-8"></i>
+                  <div class="text-primary shrink-0">
+                    <i class="fas fa-check-circle w-8 h-8"></i>
                   </div>
 
                   <div>
@@ -650,8 +563,8 @@
                 <div
                   class="flex gap-4 p-4 border rounded-xl bg-white shadow-sm hover:shadow-md"
                 >
-                  <div class="text-baklib-primary shrink-0">
-                    <i data-lucide="check-circle" class="w-8 h-8"></i>
+                  <div class="text-primary shrink-0">
+                    <i class="fas fa-check-circle w-8 h-8"></i>
                   </div>
 
                   <div>
@@ -669,11 +582,11 @@
           <!-- Slide 8: Competitors -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-white p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col"
+              class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col"
             >
               <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
 
-              <header class="mb-8 border-l-8 border-baklib-primary pl-6 pr-20">
+              <header class="mb-8 border-l-8 border-primary pl-6 pr-20">
                 <h1 class="text-4xl font-black text-slate-800 mb-2">
                   竞品对比分析
                 </h1>
@@ -688,7 +601,7 @@
                   <thead class="bg-slate-100 text-slate-700">
                     <tr>
                       <th class="p-4 rounded-tl-lg">功能特性</th>
-                      <th class="p-4 bg-teal-50 text-baklib-primary">Baklib</th>
+                      <th class="p-4 bg-teal-50 text-primary">Baklib</th>
                       <th class="p-4">传统 CMS (WP)</th>
                       <th class="p-4 rounded-tr-lg">Wiki 工具 (Notion)</th>
                     </tr>
@@ -699,7 +612,7 @@
                       <td class="p-4 font-bold">架构设计</td>
 
                       <td
-                        class="p-4 bg-teal-50/30 text-baklib-primary font-bold"
+                        class="p-4 bg-teal-50/30 text-primary font-bold"
                       >
                         结构化内容中台
                       </td>
@@ -712,7 +625,7 @@
                       <td class="p-4 font-bold">对外发布</td>
 
                       <td
-                        class="p-4 bg-teal-50/30 text-baklib-primary font-bold"
+                        class="p-4 bg-teal-50/30 text-primary font-bold"
                       >
                         专业门户 (SEO/CDN)
                       </td>
@@ -725,7 +638,7 @@
                       <td class="p-4 font-bold">内部知识</td>
 
                       <td
-                        class="p-4 bg-teal-50/30 text-baklib-primary font-bold"
+                        class="p-4 bg-teal-50/30 text-primary font-bold"
                       >
                         强 (权限/搜索)
                       </td>
@@ -738,7 +651,7 @@
                       <td class="p-4 font-bold">AI 就绪度</td>
 
                       <td
-                        class="p-4 bg-teal-50/30 text-baklib-primary font-bold"
+                        class="p-4 bg-teal-50/30 text-primary font-bold"
                       >
                         原生 (RAG + Agents)
                       </td>
@@ -751,7 +664,7 @@
                       <td class="p-4 font-bold">部署方式</td>
 
                       <td
-                        class="p-4 bg-teal-50/30 text-baklib-primary font-bold"
+                        class="p-4 bg-teal-50/30 text-primary font-bold"
                       >
                         SaaS + 私有化
                       </td>
@@ -768,11 +681,11 @@
           <!-- Slide 9: Architecture -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-white p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col"
+              class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col"
             >
               <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
 
-              <header class="mb-8 border-l-8 border-baklib-primary pl-6 pr-20">
+              <header class="mb-8 border-l-8 border-primary pl-6 pr-20">
                 <h1 class="text-4xl font-black text-slate-800 mb-2">
                   平台架构设计
                 </h1>
@@ -843,11 +756,11 @@
           <!-- Slide 10: Process -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-white p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col"
+              class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col"
             >
               <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
 
-              <header class="mb-8 border-l-8 border-baklib-primary pl-6 pr-20">
+              <header class="mb-8 border-l-8 border-primary pl-6 pr-20">
                 <h1 class="text-4xl font-black text-slate-800 mb-2">
                   平台使用流程
                 </h1>
@@ -862,9 +775,9 @@
                   class="flex-1 flex flex-col items-center text-center group"
                 >
                   <div
-                    class="w-16 h-16 rounded-full bg-white border-4 border-baklib-primary flex items-center justify-center text-baklib-primary mb-4"
+                    class="w-16 h-16 rounded-full bg-white border-4 border-primary flex items-center justify-center text-primary mb-4"
                   >
-                    <i data-lucide="server"></i>
+                    <i class="fas fa-server"></i>
                   </div>
 
                   <h4 class="font-bold text-lg">1. 导入</h4>
@@ -876,9 +789,9 @@
                   class="flex-1 flex flex-col items-center text-center group"
                 >
                   <div
-                    class="w-16 h-16 rounded-full bg-white border-4 border-baklib-primary flex items-center justify-center text-baklib-primary mb-4"
+                    class="w-16 h-16 rounded-full bg-white border-4 border-primary flex items-center justify-center text-primary mb-4"
                   >
-                    <i data-lucide="layers"></i>
+                    <i class="fas fa-layer-group"></i>
                   </div>
 
                   <h4 class="font-bold text-lg">2. 整理</h4>
@@ -890,9 +803,9 @@
                   class="flex-1 flex flex-col items-center text-center group"
                 >
                   <div
-                    class="w-16 h-16 rounded-full bg-white border-4 border-baklib-primary flex items-center justify-center text-baklib-primary mb-4"
+                    class="w-16 h-16 rounded-full bg-white border-4 border-primary flex items-center justify-center text-primary mb-4"
                   >
-                    <i data-lucide="code"></i>
+                    <i class="fas fa-code"></i>
                   </div>
 
                   <h4 class="font-bold text-lg">3. 设计</h4>
@@ -904,9 +817,9 @@
                   class="flex-1 flex flex-col items-center text-center group"
                 >
                   <div
-                    class="w-16 h-16 rounded-full bg-white border-4 border-baklib-primary flex items-center justify-center text-baklib-primary mb-4"
+                    class="w-16 h-16 rounded-full bg-white border-4 border-primary flex items-center justify-center text-primary mb-4"
                   >
-                    <i data-lucide="globe"></i>
+                    <i class="fas fa-globe"></i>
                   </div>
 
                   <h4 class="font-bold text-lg">4. 发布</h4>
@@ -918,9 +831,9 @@
                   class="flex-1 flex flex-col items-center text-center group"
                 >
                   <div
-                    class="w-16 h-16 rounded-full bg-white border-4 border-baklib-primary flex items-center justify-center text-baklib-primary mb-4"
+                    class="w-16 h-16 rounded-full bg-white border-4 border-primary flex items-center justify-center text-primary mb-4"
                   >
-                    <i data-lucide="bar-chart"></i>
+                    <i class="fas fa-chart-bar"></i>
                   </div>
 
                   <h4 class="font-bold text-lg">5. 分析</h4>
@@ -934,11 +847,11 @@
           <!-- Slide 11: Deployment -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-white p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col"
+              class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col"
             >
               <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
 
-              <header class="mb-8 border-l-8 border-baklib-primary pl-6 pr-20">
+              <header class="mb-8 border-l-8 border-primary pl-6 pr-20">
                 <h1 class="text-4xl font-black text-slate-800 mb-2">
                   部署实施方案
                 </h1>
@@ -950,58 +863,58 @@
                 class="grid grid-cols-1 md:grid-cols-2 gap-8 h-full items-center"
               >
                 <div
-                  class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-baklib-primary h-full"
+                  class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-primary h-full"
                 >
                   <div class="flex items-center gap-3 mb-4">
                     <i
-                      data-lucide="cloud"
-                      class="text-baklib-primary w-8 h-8"
+                      class="fas fa-cloud"
+                      class="text-primary w-8 h-8"
                     ></i>
                     <h3 class="text-2xl font-bold">SaaS 云端版</h3>
                   </div>
 
                   <ul class="space-y-3 text-slate-600">
                     <li class="flex gap-2">
-                      <i data-lucide="check-square" class="w-4 h-4"></i>
+                      <i class="fas fa-check-square w-4 h-4"></i>
                       即开即用，零维护成本
                     </li>
 
                     <li class="flex gap-2">
-                      <i data-lucide="check-square" class="w-4 h-4"></i>
+                      <i class="fas fa-check-square w-4 h-4"></i>
                       全球 CDN 加速支持
                     </li>
 
                     <li class="flex gap-2">
-                      <i data-lucide="check-square" class="w-4 h-4"></i>
+                      <i class="fas fa-check-square w-4 h-4"></i>
                       自动更新与数据备份
                     </li>
                   </ul>
                 </div>
 
                 <div
-                  class="bg-slate-800 text-white p-8 rounded-2xl shadow-xl border-t-4 border-baklib-secondary h-full"
+                  class="bg-slate-800 text-white p-8 rounded-2xl shadow-xl border-t-4 border-secondary h-full"
                 >
                   <div class="flex items-center gap-3 mb-4">
                     <i
-                      data-lucide="lock"
-                      class="text-baklib-secondary w-8 h-8"
+                      class="fas fa-lock"
+                      class="text-secondary w-8 h-8"
                     ></i>
                     <h3 class="text-2xl font-bold">私有化 / 本地部署</h3>
                   </div>
 
                   <ul class="space-y-3 text-slate-300">
                     <li class="flex gap-2">
-                      <i data-lucide="check-square" class="w-4 h-4"></i>
+                      <i class="fas fa-check-square w-4 h-4"></i>
                       数据完全自主掌控
                     </li>
 
                     <li class="flex gap-2">
-                      <i data-lucide="check-square" class="w-4 h-4"></i>
+                      <i class="fas fa-check-square w-4 h-4"></i>
                       支持内网 / VPN 隔离部署
                     </li>
 
                     <li class="flex gap-2">
-                      <i data-lucide="check-square" class="w-4 h-4"></i>
+                      <i class="fas fa-check-square w-4 h-4"></i>
                       买断或年度授权模式
                     </li>
                   </ul>
@@ -1013,11 +926,11 @@
           <!-- Slide 12: Private Req -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-white p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col"
+              class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col"
             >
               <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
 
-              <header class="mb-8 border-l-8 border-baklib-primary pl-6 pr-20">
+              <header class="mb-8 border-l-8 border-primary pl-6 pr-20">
                 <h1 class="text-4xl font-black text-slate-800 mb-2">
                   私有化环境要求
                 </h1>
@@ -1029,9 +942,9 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h4
-                      class="text-baklib-primary font-bold text-lg mb-4 flex items-center gap-2"
+                      class="text-primary font-bold text-lg mb-4 flex items-center gap-2"
                     >
-                      <i data-lucide="server"></i>
+                      <i class="fas fa-server"></i>
                       硬件配置
                     </h4>
 
@@ -1044,9 +957,9 @@
 
                   <div>
                     <h4
-                      class="text-baklib-primary font-bold text-lg mb-4 flex items-center gap-2"
+                      class="text-primary font-bold text-lg mb-4 flex items-center gap-2"
                     >
-                      <i data-lucide="settings"></i>
+                      <i class="fas fa-cog"></i>
                       软件环境
                     </h4>
 
@@ -1064,11 +977,11 @@
           <!-- Slide 13: Maturity -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-white p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col"
+              class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col"
             >
               <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
 
-              <header class="mb-8 border-l-8 border-baklib-primary pl-6 pr-20">
+              <header class="mb-8 border-l-8 border-primary pl-6 pr-20">
                 <h1 class="text-4xl font-black text-slate-800 mb-2">
                   数字体验成熟度画像
                 </h1>
@@ -1122,11 +1035,11 @@
           <!-- Slide 14: ROI -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-white p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col"
+              class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col"
             >
               <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
 
-              <header class="mb-8 border-l-8 border-baklib-primary pl-6 pr-20">
+              <header class="mb-8 border-l-8 border-primary pl-6 pr-20">
                 <h1 class="text-4xl font-black text-slate-800 mb-2">
                   企业 ROI 投资回报
                 </h1>
@@ -1179,11 +1092,11 @@
           <!-- Slide 15: AI Vision -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-white p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col"
+              class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col"
             >
               <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
 
-              <header class="mb-8 border-l-8 border-baklib-primary pl-6 pr-20">
+              <header class="mb-8 border-l-8 border-primary pl-6 pr-20">
                 <h1 class="text-4xl font-black text-slate-800 mb-2">
                   AI 远景规划
                 </h1>
@@ -1195,8 +1108,8 @@
 
               <div class="flex flex-col gap-6">
                 <div class="flex items-start gap-4">
-                  <div class="bg-baklib-primary text-white p-3 rounded-lg">
-                    <i data-lucide="bot"></i>
+                  <div class="bg-primary text-white p-3 rounded-lg">
+                    <i class="fas fa-robot"></i>
                   </div>
 
                   <div>
@@ -1206,8 +1119,8 @@
                 </div>
 
                 <div class="flex items-start gap-4">
-                  <div class="bg-baklib-secondary text-white p-3 rounded-lg">
-                    <i data-lucide="cpu"></i>
+                  <div class="bg-secondary text-white p-3 rounded-lg">
+                    <i class="fas fa-microchip"></i>
                   </div>
 
                   <div>
@@ -1217,8 +1130,8 @@
                 </div>
 
                 <div class="flex items-start gap-4">
-                  <div class="bg-baklib-accent text-white p-3 rounded-lg">
-                    <i data-lucide="trending-up"></i>
+                  <div class="bg-accent text-white p-3 rounded-lg">
+                    <i class="fas fa-chart-line-up"></i>
                   </div>
 
                   <div>
@@ -1241,22 +1154,20 @@
           <!-- Slide 16: End -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-baklib-primary text-white p-12 shadow-2xl rounded-3xl overflow-hidden relative flex flex-col items-center justify-center text-center"
+              class="w-full h-full bg-secondary backdrop-blur-xl text-white p-12 shadow-2xl rounded-3xl border border-white/10 overflow-hidden relative flex flex-col items-center justify-center text-center"
             >
-              <div class="absolute top-6 right-8 z-10" x-html="logoSvg"></div>
-
               <h2 class="text-6xl font-black mb-8">Baklib</h2>
 
               <p class="text-2xl text-teal-100 mb-12">
-                企业知识与数字体验的基础设施。
+                企业知识资产与数字体验基础设施
               </p>
 
               <div class="flex gap-6">
                 <button
-                  class="px-8 py-4 bg-white text-baklib-primary font-bold rounded-full shadow-xl hover:bg-teal-50 transition-colors flex items-center gap-2"
+                  class="px-8 py-4 bg-white text-primary font-bold rounded-full shadow-xl hover:bg-teal-50 transition-colors flex items-center gap-2"
                 >
                   预约演示
-                  <i data-lucide="arrow-right"></i>
+                  <i class="fas fa-arrow-right"></i>
                 </button>
 
                 <button
@@ -1279,18 +1190,18 @@
     <div class="fixed bottom-0 left-0 w-full z-50">
       <div class="w-full h-2 bg-slate-200">
         <div
-          class="h-full bg-baklib-primary transition-all duration-300 ease-out"
+          class="h-full bg-primary transition-all duration-300 ease-out"
           :style="`width: ${progress}%`"
         ></div>
       </div>
 
       <div
-        class="bg-white border-t border-slate-200 p-3 flex items-center justify-between"
+        class="bg-white/80 backdrop-blur-xl border-t border-white/20 p-3 flex items-center justify-between shadow-lg"
       >
         <div class="flex items-center gap-4 ml-4">
           <span
             class="text-slate-500 font-mono text-sm"
-            x-text="`${(currentIndex + 1).toString().padStart(2, '0')} / ${slides.length}`"
+            x-text="`${(currentIndex + 1).toString().padStart(2, '0')} / 16`"
           ></span>
 
           <span class="hidden md:inline text-xs text-slate-400 font-medium">
@@ -1302,17 +1213,21 @@
           <button
             @click="swiper.slidePrev()"
             :disabled="currentIndex === 0"
-            class="p-2 rounded-full hover:bg-slate-100 disabled:opacity-30"
+            class="p-2 rounded-full hover:bg-primary disabled:opacity-30"
           >
-            <i data-lucide="chevron-left"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 w-6 h-6">
+              <path fill-rule="evenodd" d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z" clip-rule="evenodd" />
+            </svg>
           </button>
 
           <button
             @click="swiper.slideNext()"
-            :disabled="currentIndex === slides.length - 1"
-            class="p-2 rounded-full hover:bg-slate-100 disabled:opacity-30"
+            :disabled="currentIndex >= 15"
+            class="p-2 rounded-full hover:bg-primary disabled:opacity-30"
           >
-            <i data-lucide="chevron-right"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 w-6 h-6">
+              <path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd" />
+            </svg>
           </button>
         </div>
       </div>
@@ -1324,12 +1239,6 @@
           currentIndex: 0,
           menuOpen: false,
           swiper: null,
-          logoSvg: `<svg viewBox="0 0 100 100" class="w-16 h-16 drop-shadow-md">
-                    <defs><linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#0d9488" /><stop offset="100%" stopColor="#ea580c" /></linearGradient></defs>
-                    <rect x="0" y="0" width="100" height="100" rx="22" fill="url(#logoGradient)" />
-                    <path d="M35 70V30h14c8 0 13 4 13 10 0 4-2 7-6 8.5 5 1.5 8 5 8 10 0 7-6 11.5-15 11.5H35zm8-22h6c3.5 0 6-1.5 6-5s-2.5-5-6-5h-6v10zm0 15h7c4 0 7-2 7-6s-3-6-7-6h-7v12z" fill="white" />
-                    <circle cx="82" cy="70" r="6" fill="#ea580c" stroke="white" strokeWidth="2" />
-                </svg>`,
           slides: [
             "What: 一句话介绍",
             "Why: 企业 3 个痛点",
@@ -1349,74 +1258,63 @@
             "结语",
           ],
           get progress() {
-            return ((this.currentIndex + 1) / this.slides.length) * 100;
+            const total = this.slides.length || 16;
+            const current = this.currentIndex || 0;
+            if (!total || total === 0) {
+              return 0;
+            }
+            const percentage = ((current + 1) / total) * 100;
+            const result = Math.min(Math.max(percentage, 0), 100);
+            return isNaN(result) ? 0 : result;
           },
           initApp() {
             this.swiper = new Swiper(".mySwiper", {
-              effect: "fade", // Presentation style
+              effect: "slide", // 使用 slide 效果以显示间距
+              slidesPerView: 1,
               allowTouchMove: false, // Prevent accidental swipes, use controls
-              fadeEffect: { crossFade: true },
-              keyboard: { enabled: true },
+              speed: 600, // 切换速度
+              keyboard: {
+                enabled: true,
+                onlyInViewport: true,
+              },
               on: {
                 slideChange: (s) => {
                   this.currentIndex = s.activeIndex;
+                  // 强制更新进度条（确保响应式更新）
+                  this.$nextTick(() => {
+                    // 触发响应式更新
+                  });
                 },
               },
             });
 
-            // Init Icons
-            lucide.createIcons();
+            // 添加键盘事件监听（左右方向键控制翻页）
+            const handleKeyDown = (e) => {
+              if (!this.swiper) return;
 
-            // Init Chart.js for Slide 13
-            const ctx = document.getElementById("maturityChart");
-            if (ctx) {
-              new Chart(ctx, {
-                type: "radar",
-                data: {
-                  labels: [
-                    "品牌体验",
-                    "产品体验",
-                    "客户体验",
-                    "SEO 表现",
-                    "AI 就绪度",
-                  ],
-                  datasets: [
-                    {
-                      label: "得分",
-                      data: [88, 92, 90, 85, 78],
-                      fill: true,
-                      backgroundColor: "rgba(13, 148, 136, 0.2)",
-                      borderColor: "#0d9488",
-                      pointBackgroundColor: "#0d9488",
-                      pointBorderColor: "#fff",
-                      pointHoverBackgroundColor: "#fff",
-                      pointHoverBorderColor: "#0d9488",
-                    },
-                  ],
-                },
-                options: {
-                  responsive: true,
-                  maintainAspectRatio: false,
-                  scales: {
-                    r: {
-                      angleLines: { color: "#e2e8f0" },
-                      grid: { color: "#e2e8f0" },
-                      pointLabels: {
-                        font: {
-                          size: 14,
-                          weight: "bold",
-                          family: '"Noto Sans SC"',
-                        },
-                        color: "#475569",
-                      },
-                      suggestedMin: 0,
-                      suggestedMax: 100,
-                    },
-                  },
-                  plugins: { legend: { display: false } },
-                },
-              });
-            }
+              // 左方向键或上方向键：上一张
+              if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                this.swiper.slidePrev();
+              }
+              // 右方向键或下方向键：下一张
+              else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                this.swiper.slideNext();
+              }
+              // Home 键：第一张
+              else if (e.key === 'Home') {
+                e.preventDefault();
+                this.swiper.slideTo(0);
+              }
+              // End 键：最后一张
+              else if (e.key === 'End') {
+                e.preventDefault();
+                this.swiper.slideTo(this.slides.length - 1);
+              }
+            };
+
+            document.addEventListener('keydown', handleKeyDown);
           },
           goToSlide(index) {
             this.swiper.slideTo(index);
@@ -1425,5 +1323,3 @@
         }));
       });
     </script>
-  </body>
-</html>

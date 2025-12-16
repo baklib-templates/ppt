@@ -6,6 +6,7 @@ import Alpine from 'alpinejs';
 
 // 注意：Swiper CSS 在 application.css 中通过 @import 'swiper/swiper-bundle.css' 导入
 // 注意：Font Awesome CSS 在 application.css 中通过 @import 导入
+// 注意：复制功能使用自定义方法实现，不再使用 alpine-clipboard 插件
 
 // 将 Alpine 挂载到 window，以便在 HTML 中使用
 window.Alpine = Alpine;
@@ -15,6 +16,9 @@ window.Swiper = Swiper;
 
 // 等待 Alpine.js 初始化
 document.addEventListener("alpine:init", () => {
+  // 确保插件在 alpine:init 事件中也可用
+  // 插件已经在外部注册，这里不需要重复注册
+
   Alpine.data("presentation", () => ({
     currentIndex: 0,
     menuOpen: false,
