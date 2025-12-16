@@ -4,7 +4,7 @@
 
 <main id="content" class="min-h-screen bg-gray-50">
   <!-- Hero Section -->
-  <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-8 md:py-12">
+  <section class="bg-gradient-to-r from-primary to-purple-600 text-white py-8 md:py-12">
     <div class="container mx-auto px-4 xl:max-w-6xl">
       <div class="text-center">
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">{{ site.name }}</h1>
@@ -29,7 +29,7 @@
                       class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
                   </div>
                 {% else %}
-                  <div class="relative h-48 overflow-hidden bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                  <div class="relative h-48 overflow-hidden bg-gradient-to-br from-primary-600 to-purple-600 flex items-center justify-center">
                     <div class="text-white text-6xl font-bold opacity-50">{{ channel.settings.title | slice: 0, 1 }}</div>
                   </div>
                 {% endif %}
