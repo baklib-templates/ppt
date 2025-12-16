@@ -10,10 +10,6 @@ module.exports = {
     extend: {
       colors: () => {
         return {
-          "clifford": '#da373d',
-          slate: {
-            150: "#E9EEF5",
-          },
           ...["primary", "secondary", "accent", "info", "success", "warning"].reduce((map, name) => {
             return {
               ...map,
