@@ -76,7 +76,7 @@
         <div class="swiper-wrapper">
           {% for slide in slides %}
             <div class="swiper-slide">
-              <div class="w-full h-full bg-white/60 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col">
+              <div class="w-full h-full bg-white/80 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col">
 
                 <div class="flex-1 flex flex-col justify-center items-center text-center">
                   {{ slide.settings.html_content }}
@@ -99,12 +99,12 @@
               <h2 class="text-3xl lg:text-4xl text-black mb-6">
                 {{ site.settings.company_name }}
               </h2>
-              <div class="flex gap-6">
+              <div class="flex max-w-6xl mx-auto text-base lg:text-xl text-slate-600 leading-relax leading-5 md:leading-8">
                 {{ site.settings.company_descriptionn }}
               </div>
 
-              <div class="mt-16 text-teal-200 text-sm">
-                {{ site.settings.company_website_url }}
+              <div class="mt-16 text-primary-500">
+                <a href="{{ site.settings.company_website_url }}" target="_blank">{{ site.settings.company_website_url }}</a>
               </div>
             </div>
           </div>
