@@ -92,31 +92,19 @@
             >
 
               <div class="flex flex-col items-center justify-center gap-2">
-                <img src="{{ 'images/theme/icon.png' | asset_url }}" alt="Baklib" class="h-24">
-                <img src="{{ 'images/theme/logo-white.svg' | asset_url }}" alt="Baklib" class="h-32">
+              {% assign default_logo = 'images/theme/logo-white.svg' | asset_url %}
+                <img src="{{ site.settings.logo_url | default: default_logo }}" alt="Baklib" class="h-32">
               </div>
 
-              <p class="text-2xl text-teal-100 mb-12">
-                企业知识资产与数字体验基础设施
-              </p>
-
+              <h2 class="text-3xl lg:text-4xl text-black mb-6">
+                {{ site.settings.company_name }}
+              </h2>
               <div class="flex gap-6">
-                <a href="https://www.baklib.com/about/contact" target="_blank"
-                  class="px-8 py-4 bg-white text-primary font-bold rounded-full shadow-xl hover:bg-teal-50 transition-colors flex items-center gap-2"
-                >
-                  预约演示
-                  <i class="fas fa-arrow-right"></i>
-                </a>
-
-                <a href="https://baklib.com/" target="_blank"
-                  class="px-8 py-4 border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-colors"
-                >
-                  注册体验
-                </a>
+                {{ site.settings.company_descriptionn }}
               </div>
 
               <div class="mt-16 text-teal-200 text-sm">
-                www.baklib.com
+                {{ site.settings.company_website_url }}
               </div>
             </div>
           </div>

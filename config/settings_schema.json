@@ -107,6 +107,23 @@
         "type": "text",
         "label": "网站口号",
         "default": "AI PPT 幻灯片 - 多端适配的演示文稿解决方案"
+      },
+      {
+        "id": "company_name",
+        "type": "text",
+        "label": "公司名称",
+        "default": "公司名称"
+      },
+      {
+        "id": "company_descriptionn",
+        "type": "textarea",
+        "label": "公司介绍",
+        "default": "公司简单介绍"
+      },
+      {
+        "id": "company_website_url",
+        "type": "text",
+        "label": "官网 URL"
       }
     ]
   },
