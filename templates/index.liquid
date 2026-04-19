@@ -1,5 +1,5 @@
 {% comment %} 首页：列表展示所有栏目 {% endcomment %}
-{% assign channels = page.children_in_list | order_by: 'created_at' %}
+{% assign channels = page.children_in_list %}
 {% assign channel_size = channels | size %}
 
 <main id="content" class="min-h-screen bg-gray-50">

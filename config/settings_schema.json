@@ -95,14 +95,6 @@
         "info": "展示在页头导航栏"
       },
       {
-        "id": "footer_logo_url",
-        "type": "image_picker",
-        "ratio": "8:2",
-        "width": 150,
-        "label": "页脚 LOGO",
-        "info": "展示在页脚导航栏"
-      },
-      {
         "id": "slogan",
         "type": "text",
         "label": "网站口号",
