@@ -75,10 +75,10 @@
       <div class="swiper mySwiper w-full h-full">
         <div class="swiper-wrapper">
           {% for slide in slides %}
-            <div class="swiper-slide">
-              <div class="w-full h-full bg-white/80 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col">
+              <div class="swiper-slide">
+              <div class="w-full h-full min-h-0 bg-white/80 backdrop-blur-xl rounded-3xl p-4 shadow-2xl border border-white/20 overflow-auto relative flex flex-col">
 
-                <div class="flex-1 flex flex-col justify-center items-center text-center">
+                <div class="slide-html-host flex min-h-0 w-full flex-1 flex-col items-stretch justify-stretch text-left">
                   {{ slide.settings.html_content }}
                 </div>
               </div>
@@ -88,7 +88,7 @@
           <!-- 结语幻灯片 -->
           <div class="swiper-slide">
             <div
-              class="w-full h-full bg-secondary backdrop-blur-xl text-white p-12 shadow-2xl rounded-3xl border border-white/10 overflow-hidden relative flex flex-col items-center justify-center text-center"
+              class="w-full h-full bg-primary-100 backdrop-blur-xl text-white p-12 shadow-2xl rounded-3xl border border-white/10 overflow-hidden relative flex flex-col items-center justify-center text-center"
             >
 
               <div class="flex flex-col items-center justify-center gap-2">
