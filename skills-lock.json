@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "mineru-office-to-markdown": {
+      "source": "baklib-tools/skills",
+      "sourceType": "github",
+      "computedHash": "618bcef71ba71f630a9f8db15c13b744e1e63da0e204f205e61140672210d593"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "copy": {
+    "en": {
+      "title": "PPT",
+      "subtitle": "Web-based fullscreen presentation theme with channels and HTML slides powered by Swiper.",
+      "keywords": ["HTML slides", "Swiper", "Channels"]
+    },
+    "zh-CN": {
+      "title": "在线演示文稿",
+      "subtitle": "基于网页的全屏演示主题，支持栏目与 HTML 幻灯片，Swiper 流畅切换与键盘导航。",
+      "keywords": ["HTML 幻灯片", "Swiper 切换", "栏目演示"]
+    }
+  },
+  "keywords": {
+    "en": ["HTML slides", "Swiper", "Channels"],
+    "zh-CN": ["HTML 幻灯片", "Swiper 切换", "栏目演示"]
+  },
+  "cover": {
+    "gradient_left": [[242, 252, 249], [224, 242, 235]],
+    "gradient_right": [[255, 248, 242], [248, 232, 220]],
+    "blob_palette": [
+      [13, 148, 136],
+      [20, 184, 166],
+      [45, 212, 191],
+      [234, 88, 12],
+      [251, 146, 60],
+      [253, 186, 116]
+    ],
+    "liquid_glass": {
+      "blobs": 6,
+      "blob_alpha": 30,
+      "blob_blur": 120,
+      "grain_amount": 0.025
+    }
+  }
+}

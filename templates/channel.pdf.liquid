@@ -137,21 +137,23 @@
   {
     "name": "栏目页 - PDF 版本",
     "description": "PDF 版本栏目页，从上到下显示所有子页面内容，适合打印为 PDF",
-    "thumb_url": "images/theme/thumb-pdf.webp",
+    "thumb_url": "images/theme/thumb.png",
     "preview_image_urls": [
-      "images/theme/channel-pdf.webp"
+      "images/theme/${lang}/channel.png"
     ],
     "sub_page_templates": ["page"],
     "settings": [
       {
         "id": "title",
         "type": "text",
+         "to_markdown": "true",
         "label": "标题",
         "info": "栏目标题"
       },
       {
         "id": "description",
         "type": "textarea",
+         "to_markdown": "true",
         "label": "描述",
         "info": "栏目描述"
       },
@@ -160,6 +162,7 @@
         "type": "image_picker",
         "ratio": "16:9",
         "width": 400,
+         "to_markdown": "true",
         "label": "封面图",
         "info": "栏目封面图片"
       }

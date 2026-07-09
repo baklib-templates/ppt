@@ -1,0 +1,63 @@
+{
+  "theme_label": "PPT",
+  "theme_description": "Web-based fullscreen presentation theme with channels and HTML slides powered by Swiper.",
+  "recommendations": {
+    "scheme1": {
+      "name": "Color scheme 1"
+    },
+    "scheme2": {
+      "name": "Color scheme 2"
+    }
+  },
+  "brand": {
+    "name": "Brand settings",
+    "settings": {
+      "logo_url": {
+        "label": "Site logo",
+        "info": "Shown in the header navigation bar"
+      },
+      "slogan": {
+        "label": "Site slogan",
+        "default": "PPT — fullscreen web presentations for every device"
+      },
+      "company_name": {
+        "label": "Company name",
+        "default": "Company name"
+      },
+      "company_descriptionn": {
+        "label": "Company description",
+        "default": "Brief company introduction"
+      },
+      "company_website_url": {
+        "label": "Website URL"
+      }
+    }
+  },
+  "header_footer": {
+    "name": "Header & footer",
+    "settings": {
+      "head_html": {
+        "label": "Custom HTML in <head>",
+        "info": "Add custom HTML inside the <head> tag"
+      },
+      "header_menu": {
+        "label": "Header navigation menu",
+        "info": "Format: menu_name[slug]{sub_menu[slug|sub_menu[slug — one column per line.",
+        "default": "Home[/"
+      },
+      "footer_menu": {
+        "label": "Footer menu",
+        "info": "Format: menu_name[slug]{sub_menu[slug|sub_menu[slug — one column per line.",
+        "default": "Quick links[/"
+      },
+      "company_info": {
+        "label": "Footer company info",
+        "default": "PPT — build responsive fullscreen slide decks on the web"
+      },
+      "copyright_info": {
+        "label": "Footer copyright",
+        "default": "Copyright © Baklib Inc. | All rights reserved."
+      }
+    }
+  }
+}

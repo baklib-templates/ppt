@@ -9,9 +9,9 @@
   {
     "name": "Slide 组件",
     "description": "PPT 幻灯片单页组件",
-    "thumb_url": "images/theme/thumb-component.webp",
+    "thumb_url": "images/theme/thumb.png",
     "preview_image_urls": [
-      "images/theme/component.webp"
+      "images/theme/${lang}/cover.png"
     ],
     "sub_page_templates": ["component"],
     "settings": [
@@ -20,6 +20,7 @@
         "type": "text",
         "label": "标题",
         "info": "组件标题",
+        "to_markdown": "true",
         "placeholder": "请输入组件标题"
       },
       {
@@ -27,6 +28,7 @@
         "type": "textarea",
         "label": "提示词",
         "info": "组件提示词",
+        "to_markdown": "true",
         "placeholder": "请输入组件提示词",
         "rows": 10
       },
@@ -36,6 +38,7 @@
         "label": "HTML内容",
         "info": "组件HTML内容，支持HTML代码和动画效果",
         "rows": 20,
+        "to_markdown": "true",
         "placeholder": "请输入HTML内容..."
       }
     ]

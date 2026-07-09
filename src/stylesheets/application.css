@@ -51,6 +51,70 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Liquid Glass — floating menu toggle (functional layer, capsule) */
+.glass-toggle {
+  padding: 1px;
+  border-radius: 9999px;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    hsl(var(--theme-color-primary) / 0.2),
+    hsl(var(--theme-color-accent) / 0.15),
+    hsl(var(--theme-color-primary) / 0.2)
+  );
+  box-shadow: 0 8px 32px hsl(var(--theme-color-base-content) / 0.06);
+  transition: box-shadow 0.2s ease, transform 0.15s ease, background 0.2s ease;
+}
+
+.glass-toggle:hover {
+  background: linear-gradient(
+    to right,
+    hsl(var(--theme-color-primary) / 0.3),
+    hsl(var(--theme-color-accent) / 0.25),
+    hsl(var(--theme-color-primary) / 0.3)
+  );
+  box-shadow: 0 12px 40px hsl(var(--theme-color-base-content) / 0.1);
+}
+
+.glass-toggle:active {
+  transform: scale(0.97);
+}
+
+.glass-toggle__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  color: hsl(var(--theme-color-base-content));
+  background: hsl(var(--theme-color-base-100) / 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid hsl(var(--theme-color-base-content) / 0.08);
+  box-shadow: inset 0 1px 0 hsl(var(--theme-color-base-content) / 0.12);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.glass-toggle:hover .glass-toggle__inner {
+  background: hsl(var(--theme-color-base-100) / 0.9);
+  color: hsl(var(--theme-color-primary));
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .glass-toggle__inner {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: hsl(var(--theme-color-base-100));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-toggle,
+  .glass-toggle__inner {
+    transition: none;
+  }
+}
+
 /* macOS Style Card Shadow */
 .macos-shadow {
   box-shadow:

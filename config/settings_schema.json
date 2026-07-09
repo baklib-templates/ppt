@@ -1,22 +1,20 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "aippt",
-    "theme_label": "AI PPT 幻灯片",
-    "theme_description": "通过网页制作多端适配的PPT幻灯片效果，支持HTML代码制作幻灯片动画",
-    "theme_version": "0.0.1",
+    "theme_name": "ppt",
+    "theme_label": "t:schema.theme_label",
+    "theme_description": "t:schema.theme_description",
+    "theme_version": "1.0.0",
     "theme_syntax_version": "v2",
     "theme_scope": "cms",
     "theme_author": "Baklib",
-    "theme_documentation_url": "https://dev.baklib.cn/",
-    "theme_support_url": "https://www.baklib.com/",
+    "theme_documentation_url": "https://www.github.com/baklib-templates/ppt",
+    "theme_support_url": "https://www.github.com/baklib-templates/ppt",
     "theme_thumb_url": "images/theme/thumb.png",
     "theme_preview_images": [
-      "images/theme/index.webp",
-      "images/theme/channel.ppt.webp",
-      "images/theme/channel.pdf.webp",
-      "images/theme/components.webp",
-      "images/theme/component.webp"
+      "images/theme/${lang}/cover.png",
+      "images/theme/${lang}/index.png",
+      "images/theme/${lang}/channel.png"
     ],
     "theme_languages": [
       {
@@ -31,7 +29,7 @@
     "recommendations": {
       "color_schemas": {
         "scheme1": {
-          "name": "配色方案1",
+          "name": "t:schema.recommendations.scheme1.name",
           "colors": {
             "--theme-color-base-100": "#f8f9ff",
             "--theme-color-base-200": "#f5f7ff",
@@ -56,7 +54,7 @@
           }
         },
         "scheme2": {
-          "name": "配色方案2",
+          "name": "t:schema.recommendations.scheme2.name",
           "colors": {
             "--theme-color-base-100": "#181a2a",
             "--theme-color-base-200": "#23234a",
@@ -84,78 +82,78 @@
     }
   },
   {
-    "name": "品牌设置",
+    "name": "t:schema.brand.name",
     "settings": [
       {
         "id": "logo_url",
         "type": "image_picker",
         "ratio": "6:2",
         "width": 150,
-        "label": "网站 LOGO",
-        "info": "展示在页头导航栏"
+        "label": "t:schema.brand.settings.logo_url.label",
+        "info": "t:schema.brand.settings.logo_url.info"
       },
       {
         "id": "slogan",
         "type": "text",
-        "label": "网站口号",
-        "default": "AI PPT 幻灯片 - 多端适配的演示文稿解决方案"
+        "label": "t:schema.brand.settings.slogan.label",
+        "default": "t:schema.brand.settings.slogan.default"
       },
       {
         "id": "company_name",
         "type": "text",
-        "label": "公司名称",
-        "default": "公司名称"
+        "label": "t:schema.brand.settings.company_name.label",
+        "default": "t:schema.brand.settings.company_name.default"
       },
       {
         "id": "company_descriptionn",
         "type": "textarea",
-        "label": "公司介绍",
-        "default": "公司简单介绍"
+        "label": "t:schema.brand.settings.company_descriptionn.label",
+        "default": "t:schema.brand.settings.company_descriptionn.default"
       },
       {
         "id": "company_website_url",
         "type": "text",
-        "label": "官网 URL"
+        "label": "t:schema.brand.settings.company_website_url.label"
       }
     ]
   },
   {
-    "name": "页头页脚设置",
+    "name": "t:schema.header_footer.name",
     "settings": [
       {
         "id": "head_html",
         "type": "html",
-        "label": "页头自定义HTML",
-        "info": "在 <head> 标签内添加自定义HTML代码",
+        "label": "t:schema.header_footer.settings.head_html.label",
+        "info": "t:schema.header_footer.settings.head_html.info",
         "rows": 10
       },
       {
         "id": "header_menu",
         "type": "textarea",
-        "label": "页头导航菜单设置",
+        "label": "t:schema.header_footer.settings.header_menu.label",
         "rows": 10,
-        "info": "格式：menu_name[slug{sub_menu[slug|sub_menu[slug，每行一个分栏。",
-        "default": "首页[/"
+        "info": "t:schema.header_footer.settings.header_menu.info",
+        "default": "t:schema.header_footer.settings.header_menu.default"
       },
       {
         "id": "footer_menu",
         "type": "textarea",
-        "label": "页脚菜单设置",
+        "label": "t:schema.header_footer.settings.footer_menu.label",
         "rows": 10,
-        "info": "格式：menu_name[slug]{sub_menu[slug|sub_menu[slug，每行一个分栏。",
-        "default": "快捷导航[/"
+        "info": "t:schema.header_footer.settings.footer_menu.info",
+        "default": "t:schema.header_footer.settings.footer_menu.default"
       },
       {
         "id": "company_info",
         "type": "html",
-        "label": "页脚公司信息",
-        "default": "AI PPT 幻灯片 - 通过网页制作多端适配的PPT幻灯片效果"
+        "label": "t:schema.header_footer.settings.company_info.label",
+        "default": "t:schema.header_footer.settings.company_info.default"
       },
       {
         "id": "copyright_info",
         "type": "html",
-        "label": "页脚版权信息",
-        "default": "Copyright © Baklib Inc. | All rights reserved."
+        "label": "t:schema.header_footer.settings.copyright_info.label",
+        "default": "t:schema.header_footer.settings.copyright_info.default"
       }
     ]
   }

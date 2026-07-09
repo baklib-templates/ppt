@@ -1,0 +1,63 @@
+{
+  "theme_label": "PPT",
+  "theme_description": "基于网页的全屏演示主题，支持栏目与 HTML 幻灯片，Swiper 流畅切换与键盘导航。",
+  "recommendations": {
+    "scheme1": {
+      "name": "配色方案 1"
+    },
+    "scheme2": {
+      "name": "配色方案 2"
+    }
+  },
+  "brand": {
+    "name": "品牌设置",
+    "settings": {
+      "logo_url": {
+        "label": "网站 LOGO",
+        "info": "展示在页头导航栏"
+      },
+      "slogan": {
+        "label": "网站口号",
+        "default": "在线演示文稿 — 多端适配的全屏网页幻灯片"
+      },
+      "company_name": {
+        "label": "公司名称",
+        "default": "公司名称"
+      },
+      "company_descriptionn": {
+        "label": "公司介绍",
+        "default": "公司简单介绍"
+      },
+      "company_website_url": {
+        "label": "官网 URL"
+      }
+    }
+  },
+  "header_footer": {
+    "name": "页头页脚设置",
+    "settings": {
+      "head_html": {
+        "label": "页头自定义 HTML",
+        "info": "在 <head> 标签内添加自定义 HTML 代码"
+      },
+      "header_menu": {
+        "label": "页头导航菜单设置",
+        "info": "格式：menu_name[slug]{sub_menu[slug|sub_menu[slug，每行一个分栏。",
+        "default": "首页[/"
+      },
+      "footer_menu": {
+        "label": "页脚菜单设置",
+        "info": "格式：menu_name[slug]{sub_menu[slug|sub_menu[slug，每行一个分栏。",
+        "default": "快捷导航[/"
+      },
+      "company_info": {
+        "label": "页脚公司信息",
+        "default": "在线演示文稿 — 通过网页制作多端适配的全屏幻灯片"
+      },
+      "copyright_info": {
+        "label": "页脚版权信息",
+        "default": "Copyright © Baklib Inc. | All rights reserved."
+      }
+    }
+  }
+}

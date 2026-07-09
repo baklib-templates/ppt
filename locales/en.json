@@ -1,4 +1,6 @@
 {
+  "theme_label": "PPT",
+  "theme_description": "Web-based fullscreen presentation theme with channels and HTML slides powered by Swiper.",
   "sections": {
     "header": {
       "title": "Site Title"

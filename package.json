@@ -1,7 +1,7 @@
 {
-  "name": "aippt",
-  "version": "0.0.1",
-  "description": "AI PPT 幻灯片 - 通过网页制作多端适配的PPT幻灯片效果，支持HTML代码制作幻灯片动画",
+  "name": "ppt",
+  "version": "1.0.0",
+  "description": "PPT — web-based fullscreen presentation theme with channels and HTML slides",
   "scripts": {
     "build": "npm-run-all build:fonts build:css build:js",
     "build:fonts": "mkdir -p assets/webfonts && cp -r node_modules/@fortawesome/fontawesome-free/webfonts/* assets/webfonts/",

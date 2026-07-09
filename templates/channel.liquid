@@ -15,10 +15,14 @@
       @mouseleave="menuOpen = false"
     >
       <div
-        class="flex items-center gap-2 bg-white/80 backdrop-blur-xl shadow-lg border border-white/20 px-4 py-2 rounded-full cursor-pointer hover:shadow-xl hover:bg-white/90 transition-all text-slate-700 hover:text-primary"
+        class="glass-toggle"
+        role="button"
+        aria-label="幻灯片导航菜单"
+        :aria-expanded="menuOpen"
       >
-        <i class="fas fa-th-large w-5 h-5"></i>
-        <span class="font-bold text-sm">目录</span>
+        <span class="glass-toggle__inner">
+          <i class="fas fa-th-large w-5 h-5" aria-hidden="true"></i>
+        </span>
       </div>
 
       <div
@@ -71,7 +75,7 @@
     </div>
 
     <!-- Main Swiper Container -->
-    <div class="w-full h-full relative z-10 p-4 pb-20">
+    <div class="w-full h-full relative z-10 p-0 pb-12">
       <div class="swiper mySwiper w-full h-full">
         <div class="swiper-wrapper">
           {% for slide in slides %}
@@ -122,7 +126,7 @@
       </div>
 
       <div
-        class="bg-white/80 backdrop-blur-xl border-t border-white/20 p-3 flex items-center justify-between shadow-lg"
+        class="bg-white/80 backdrop-blur-xl border-t border-white/20 px-3 py-1 flex items-center justify-between shadow-lg"
       >
         <div class="flex items-center gap-4 ml-4">
           <span
@@ -247,7 +251,7 @@
     "description": "完整的 PPT 幻灯片展示页面，包含导航和控制，适合在手机端展示",
     "thumb_url": "images/theme/thumb.png",
     "preview_image_urls": [
-      "images/theme/channel.ppt.webp"
+      "images/theme/${lang}/channel.png"
     ],
     "sub_page_templates": ["page"],
     "settings": [
