@@ -88,30 +88,6 @@
               </div>
             </div>
           {% endfor %}
-
-          <!-- 结语幻灯片 -->
-          <div class="swiper-slide">
-            <div
-              class="w-full h-full bg-primary-100/50 backdrop-blur-xl text-white p-12 shadow-2xl rounded-3xl border border-white/10 overflow-hidden relative flex flex-col items-center justify-center text-center"
-            >
-
-              <div class="flex flex-col items-center justify-center gap-2">
-              {% assign default_logo = 'images/theme/logo-white.svg' | asset_url %}
-                <img src="{{ site.settings.logo_url | default: default_logo }}" alt="Baklib" class="h-32">
-              </div>
-
-              <h2 class="text-3xl lg:text-4xl text-black mb-6">
-                {{ site.settings.company_name }}
-              </h2>
-              <div class="flex max-w-6xl mx-auto text-base lg:text-xl text-slate-600" style="line-height: 2.75rem;">
-                {{ site.settings.company_descriptionn }}
-              </div>
-
-              <div class="mt-16 text-primary-500">
-                <a href="{{ site.settings.company_website_url }}" target="_blank">{{ site.settings.company_website_url }}</a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

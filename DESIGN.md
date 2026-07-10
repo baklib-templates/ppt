@@ -150,7 +150,9 @@ main (100vh)
 
 ### 3.4 动画（主题已注册）
 
-`tailwind.config.js` 提供：`animate-float`、`animate-rotate`、`animate-marquee` 等。幻灯片内可给装饰元素加 `animate-float`，**勿**给整页根节点加动画导致布局抖动。
+`tailwind.config.js` 提供：`animate-float`、`animate-rotate` 等通用装饰动效。幻灯片内可给装饰元素加 `animate-float`，**勿**给整页根节点加动画导致布局抖动。
+
+**单页专用动效**（如跑马灯、复杂过渡）应在该页 `html_content` 内用 `<style>` / `<script>` 自包含实现，使用带页面前缀的类名（如 `.slide-foo-marquee`），**不要**往 `tailwind.config.js` 或 `application.css` 增加仅一页使用的 keyframes。
 
 ---
 
@@ -394,6 +396,15 @@ main (100vh)
 ## 附录 C：存量代码说明
 
 `statics/ppt.liquid` 与部分历史幻灯片大量使用 `slate-*`、`teal-*` 及固定 `h-80` 卡片——为迁移前示例。**新生成内容以本文语义 Token 与 flex 安全区为准**，无需回头批量改旧稿除非用户明确要求。
+
+## 附录 D：单页 CSS / JS 自包含
+
+每张幻灯片的 `html_content` 应视为可独立粘贴的片段。若该页需要一次性动效或交互：
+
+- 在片段内写 `<style>` 与（必要时）`<script>`，类名加页面前缀避免与主题冲突
+- 渐变、遮罩等尽量用 `hsl(var(--theme-color-base-100))` 等语义变量，勿硬编码 Hex
+- 参考实现：`statics/slide_customer_cases.liquid`（静态 Logo 墙平铺 + CTA 居中叠放）
+- **禁止**为单页效果修改主题全局 `tailwind.config.js`、`application.css` 或执行全量 `yarn build`（除非是在撤销误加的全局样式）
 
 ---
 

@@ -61,22 +61,6 @@ module.exports = {
           '100%': {
             transform: 'translateX(0px)'
           }
-        },
-        marquee: {
-          '0%': {
-            transform: 'translateX(0%)'
-          },
-          '100%': {
-            transform: 'translateX(-100%)'
-          }
-        },
-        marquee2: {
-          '0%': {
-            transform: 'translateX(100%)'
-          },
-          '100%': {
-            transform: 'translateX(0%)'
-          }
         }
       },
       animation: {
@@ -84,9 +68,7 @@ module.exports = {
         'rotate': 'rotate 4s linear infinite',
         'float-md': 'float 4s linear infinite alternate',
         'hero-thumb-sm-animation': 'hero-thumb-sm-animation 4s linear infinite alternate',
-        'hero-thumb-md-animation': 'hero-thumb-sm-animation 2s linear infinite alternate',
-        marquee: 'marquee 25s linear infinite',
-        marquee2: 'marquee2 25s linear infinite'
+        'hero-thumb-md-animation': 'hero-thumb-sm-animation 2s linear infinite alternate'
       },
       spacing: {
         4.5: "1.125rem",
